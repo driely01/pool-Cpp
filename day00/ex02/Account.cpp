@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 20:36:00 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/09/17 16:44:29 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/17 17:24:52 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,10 +139,29 @@ void Account::_displayTimestamp() {
 
 	tm *ltm = localtime(&now);
 
-	std::cout		<<
-	"[" 			<< 1900 + ltm->tm_year	<< 1 + ltm->tm_mon	<< ltm->tm_mday	<<
-	"_"				<< ltm->tm_hour			<< ltm->tm_min 		<< ltm->tm_sec	<<
-	"] ";
+	std::cout << "[" << 1900 + ltm->tm_year;
+	if ( 1 + ltm->tm_mon < 10 )
+		std::cout << "0" << 1 + ltm->tm_mon;
+	else
+		std::cout << 1 + ltm->tm_mon;
+	if ( ltm->tm_mday < 10)
+		std::cout << "0" << ltm->tm_mday;
+	else
+	std::cout << ltm->tm_mday;
+	std::cout << "_";
+	if ( ltm->tm_hour < 10 )
+		std::cout << "0" << ltm->tm_hour;
+	else
+		std::cout << ltm->tm_hour;
+	if ( ltm->tm_min < 10)
+		std::cout << "0" << ltm->tm_min;
+	else
+		std::cout << ltm->tm_min;
+	if ( ltm->tm_sec < 10 )
+		std::cout << "0" << ltm->tm_sec;
+	else
+		std::cout << ltm->tm_sec;
+	std::cout << "] ";
 }
 
 int Account::checkAmount() const {
