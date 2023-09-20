@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phoneBook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:16:15 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/09/16 17:05:05 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/19 13:01:24 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ PhoneBook::PhoneBook() {
 	this->index = 0;
 }
 
-void PhoneBook::getContactIndex( int index ) const {
+void PhoneBook::getContactIndex() const {
 	
+	int index;
+	
+	if ( !enterAndCheckIndex( &index ) )
+		return;
+		
 	if ( this->contact[index].getFirstName().empty() ) {
 
 		std::cout << std::endl << "this one is empty next time choose the other one." << std::endl << std::endl;
@@ -36,7 +41,6 @@ void PhoneBook::getContactIndex( int index ) const {
 void PhoneBook::getContacts() const {
 
 	int i;
-	int indexInt;
 	std::string fName;
 	std::string lName;
 	std::string nName;
@@ -51,37 +55,38 @@ void PhoneBook::getContacts() const {
 	i = 0;
 	while ( i < 8 ) {
 		
-		printline();
-		fName = this->contact[i].getFirstName();
-		resizeString( &fName );
+		if ( !this->contact[i].getFirstName().empty() ) {
 
-		lName = this->contact[i].getLastName();
-		resizeString( &lName );
+			printline();
+			fName = this->contact[i].getFirstName();
+			resizeString( &fName );
 
-		nName = this->contact[i].getNickName();
-		resizeString( &nName );
+			lName = this->contact[i].getLastName();
+			resizeString( &lName );
 
-		pNumber = this->contact[i].getPhoneNumber();
-		resizeString( &pNumber );
-			
-		secret = this->contact[i].getDarkestSecret();
-		resizeString( &secret );
+			nName = this->contact[i].getNickName();
+			resizeString( &nName );
 
-		std::cout <<
-		"|" << std::setw(10) << i	<<
-		"|" << std::setw(10) << fName	<<
-		"|" << std::setw(10) << lName	<<
-		"|" << std::setw(10) << nName	<<
-		"|" << std::endl;
+			pNumber = this->contact[i].getPhoneNumber();
+			resizeString( &pNumber );
+				
+			secret = this->contact[i].getDarkestSecret();
+			resizeString( &secret );
+
+			std::cout <<
+			"|" << std::setw(10) << i	<<
+			"|" << std::setw(10) << fName	<<
+			"|" << std::setw(10) << lName	<<
+			"|" << std::setw(10) << nName	<<
+			"|" << std::endl;
+		}
 		i++;
 	}
 	
 	printline();
 	std::cout << std::endl;
 	
-	if ( !enterAndCheckIndex( &indexInt ) )
-		return;
-	getContactIndex( indexInt );
+	getContactIndex();
 }
 
 int PhoneBook::setContact() {

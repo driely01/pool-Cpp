@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 20:36:00 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/09/17 17:24:52 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/19 13:33:14 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ Account::~Account() {
 	this->_nbDeposits = 0;
 	this->_nbWithdrawals = 0;
 
-	Account::_totalAmount += this->checkAmount();
-	Account::_totalNbDeposits += this->_nbDeposits;
-	Account::_totalNbWithdrawals += this->_nbWithdrawals;
+	Account::_totalAmount -= this->checkAmount();
 
 	_displayTimestamp();
 	std::cout	<<
@@ -61,9 +59,7 @@ void Account::displayAccountsInfos() {
 	";total:"		<< getTotalAmount()				<<
 	";deposits:"	<< getNbDeposits()				<<
 	";withdrawals:"	<< Account::_totalNbWithdrawals	<<
-	std::endl; 
-
-	Account::_totalAmount = 0;
+	std::endl;
 }
 
 void Account::displayStatus() const {
@@ -86,7 +82,7 @@ void Account::makeDeposit( int deposit ) {
 	this->_nbDeposits++;
 
 	Account::_totalNbDeposits++;
-	Account::_totalAmount += this->checkAmount();
+	Account::_totalAmount += deposit;
 
 	_displayTimestamp();
 	std::cout		<<
@@ -109,7 +105,7 @@ bool Account::makeWithdrawal( int withdrawal ) {
 		this->_amount -= withdrawal;
 	
 		Account::_totalNbWithdrawals++;
-		Account::_totalAmount += this->checkAmount();
+		Account::_totalAmount -= withdrawal;
 
 		_displayTimestamp();
 		std::cout			<<
@@ -120,8 +116,6 @@ bool Account::makeWithdrawal( int withdrawal ) {
 		";nb_withdrawals:"	<< this->_nbWithdrawals	<<
 		std::endl;
 	} else {
-		
-		Account::_totalAmount += this->checkAmount();
 
 		_displayTimestamp();
 		std::cout				<<
@@ -135,10 +129,11 @@ bool Account::makeWithdrawal( int withdrawal ) {
 
 void Account::_displayTimestamp() {
 	
-	time_t now = time(0);
+	tm *ltm;
+	time_t now;
 
-	tm *ltm = localtime(&now);
-
+	now = time(0);
+	ltm = localtime(&now);
 	std::cout << "[" << 1900 + ltm->tm_year;
 	if ( 1 + ltm->tm_mon < 10 )
 		std::cout << "0" << 1 + ltm->tm_mon;

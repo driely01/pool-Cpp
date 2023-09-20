@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:46:46 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/09/16 17:00:32 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/18 21:10:46 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void printline() {
 	int j;
 
 	j = 0;
-	while ( ++j <= 45 )
+	while ( ++j <= 45 ) {
+		
 		std::cout << "-";
+	}
 	std::cout << std::endl;
 }
 
@@ -38,9 +40,9 @@ int	checkValidIndex( std::string index ) {
 	i = 0;
 	while ( index[i] ) {
 
-		if ( std::isalpha(index[i]) ) {
+		if ( !std::isdigit(index[i]) ) {
 			
-			std::cout << std::endl << "bro chill!! next time enter a number from 0 to 7." << std::endl << std::endl;
+			std::cout << std::endl << "INVALID INDEX! next time enter a number from 0 to 7." << std::endl << std::endl;
 			return 0;
 		}
 		i++;
@@ -61,18 +63,18 @@ int enterAndCheckIndex( int *indexInt ) {
 		if ( std::getline( std::cin, index ).eof() )
 			return 0;
 	}
+	if ( index.length() > 2) {
+		
+		std::cout << std::endl << "invalid index next time enter a valid one." << std::endl << std::endl;
+		return 0;
+	}
 	if ( !checkValidIndex( index ) )
 		return 0;
 	*indexInt = std::atoi( index.c_str() );
-	while ( *indexInt < 0 || *indexInt >= 8 ) {
+	if ( *indexInt < 0 || *indexInt >= 8 ) {
 		
-		if ( !checkValidIndex( index ) )
-			return 0;
-		std::cout << std::endl << "invalid index please enter a valid one." << std::endl << std::endl;
-		std::cout << "enter index: ";
-		if ( std::getline( std::cin, index ).eof() )
-			return 0;
-		*indexInt = std::atoi( index.c_str() );
+		std::cout << std::endl << "invalid index next time enter a valid one." << std::endl << std::endl;
+		return 0;
 	}
 	return 1;
 }
@@ -94,7 +96,11 @@ int checkXNames( std::string str, std::string xName ) {
 	i = 0;
 	if ( str.empty() )
 		return 0;
+	if ( str.length() > 70 ) {
 
+		std::cout << std::endl << xName << " is really too long and invalid please enter a valid one." << std::endl << std::endl;
+		return 0;
+	}
 	while ( str[i] ) {
 		
 		if (!std::isalpha(str[i]) && str[i] != ' ' ) {

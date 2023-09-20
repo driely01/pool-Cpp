@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phoneBook.hpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 11:10:06 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/09/16 17:07:30 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/19 13:00:34 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class PhoneBook {
 
 	public:
 		int setContact();
-		void getContactIndex( int index ) const;
+		void getContactIndex() const;
 		void getContacts() const;
 		PhoneBook();
 	
