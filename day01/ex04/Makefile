@@ -3,7 +3,7 @@ SRC = main.cpp \
 
 OBJ = ${SRC:.cpp=.o}
 
-NAME = loser
+NAME = replace
 HEADER = sed.hpp
 
 CC = c++
