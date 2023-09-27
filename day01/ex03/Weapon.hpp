@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:17:35 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/09/22 16:15:29 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/27 15:44:20 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Weapon {
 	
 	public:
-		const std::string& getType( void );
+		const std::string& getType( void ) const;
 		void setType( std::string type );
 		Weapon( std::string type );
 	
