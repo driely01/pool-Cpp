@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 16:04:38 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/09/27 15:40:04 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/29 11:53:25 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,13 @@ int replacingFile( std::string filename, std::string s1, std::string s2 ) {
 		return 0;
 		
 	std::ofstream outputFile( filename + ".replace" );
+	if ( !outputFile ) {
 
+		std::cout << "error: open: cannot open this outfile." << std::endl;
+		inputFile.close();
+		return 0;
+	}
+	
 	readingFile( inputFile, buff );
 	if ( s1 != s2)
 		findAndReplace( result, buff, s1, s2 );

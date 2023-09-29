@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:15:30 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/09/22 16:09:52 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/29 11:37:08 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ HumanB::HumanB( std::string name ) {
 
 void HumanB::attack( void ) {
 
-	std::cout << this->name << " attacks with their " << this->weapon->getType() << std::endl;
+	if ( this->weapon )
+		std::cout << this->name << " attacks with their " << this->weapon->getType() << std::endl;
 }
