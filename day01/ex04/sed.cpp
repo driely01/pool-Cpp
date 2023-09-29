@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 16:04:38 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/09/29 11:53:25 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/29 14:53:57 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int replacingFile( std::string filename, std::string s1, std::string s2 ) {
 	}
 	
 	readingFile( inputFile, buff );
-	if ( s1 != s2)
+	if ( s1 != s2 && !s1.empty() )
 		findAndReplace( result, buff, s1, s2 );
 	else
 		result = buff;
