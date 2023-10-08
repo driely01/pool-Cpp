@@ -6,12 +6,14 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:07:43 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/05 18:31:17 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/07 18:23:54 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_H
 #define FIXED_H
+
+#include <fstream>
 
 class Fixed {
 	
@@ -21,16 +23,18 @@ class Fixed {
 	
 	public:
 		Fixed( const int value );
-		Fixed( const float foating );
+		Fixed( const float floating );
 		Fixed( void );
 		Fixed( const Fixed& other );
 		~Fixed( void );
-		Fixed& operator=( const Fixed& rhs );
-		Fixed& operator<<( const Fixed& rhs );
+		void operator=( const Fixed& rhs );
 		int getRawBits( void ) const;
 		void setRawBits( int const raw );
-		float toFloat( void );
-		int toInt( void );
+		float toFloat( void ) const;
+		int toInt( void ) const;
 		
 };
+
+std::ostream& operator<<( std::ostream & o, const Fixed& rhs );
+
 #endif

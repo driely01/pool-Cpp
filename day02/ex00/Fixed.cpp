@@ -6,14 +6,14 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:42:56 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/05 17:59:45 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:40:01 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
 
-const int Fixed::store = 0;
+const int Fixed::store = 8;
 
 Fixed::Fixed( void ) {
 	
