@@ -1,4 +1,6 @@
 SRC = Fixed.cpp \
+	  Point.cpp \
+	  bsp.cpp \
 	  main.cpp
 
 OBJ = ${SRC:.cpp=.o}
