@@ -6,12 +6,11 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:23:24 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/09 21:12:44 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/09 21:19:11 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
-#include <math.h>
 
 Point::Point( void ) { }
 
