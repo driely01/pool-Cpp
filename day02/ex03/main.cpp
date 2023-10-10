@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:23:19 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/09 21:20:43 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:43:45 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int main() {
 
-	if (bsp(Point(0, 0), Point(0, 100), Point(100, 0), Point(50, 50)) == true)
-        std::cout << "Point is in the triangle" << std::endl;
+	if ( bsp( Point( 1, 1 ), Point( 3, 4 ), Point( 4, 1 ), Point( 2, 2 ) ) )
+		std::cout << "yes the point is inside the triangle" << std::endl;
 	else
-        std::cout << "Point is not in the triangle" << std::endl;
+		std::cout << "nah the point isn't inside the triangle" << std::endl;
 	return 0;
 }
