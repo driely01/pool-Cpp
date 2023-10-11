@@ -1,4 +1,5 @@
-SRC = main.cpp
+SRC = ClapTrap.cpp \
+	  main.cpp
 
 OBJ = ${SRC:.cpp=.o}
 
@@ -6,8 +7,8 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
-NAME = fixed
-HEADER = Fixed.hpp
+NAME = calp
+HEADER = ClapTrap.hpp
 
 all: ${NAME}
 
