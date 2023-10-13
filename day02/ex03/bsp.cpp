@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:23:09 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/10 15:44:07 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/12 18:37:33 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ bool  bsp( Point const a, Point const b, Point const c, Point const point) {
 
 	if ( !totalArea || !area1 || !area2 || !area3 )
 		return false;
-	return std::abs( totalArea - ( area1 + area2 + area3 ) ) < 1e-6;
+	return ft_abs( totalArea - ( area1 + area2 + area3 ) ) < 1e-6;
 }

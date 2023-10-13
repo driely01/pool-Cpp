@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/08 18:23:19 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/12 21:21:58 by del-yaag         ###   ########.fr       */
+/*   Created: 2023/10/13 16:55:09 by del-yaag          #+#    #+#             */
+/*   Updated: 2023/10/13 17:16:36 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
-#include <iostream>
+#ifndef SCAVTRAP_H
+#define SCAVTRAP_H
 
-int main( void ) {
+#include "ClapTrap.hpp"
 
-	if ( bsp( Point( 0, 0 ), Point( 100, 0 ), Point( 0, 100 ), Point( 70, 29 ) ) )
-		std::cout << "yes the point is inside the triangle" << std::endl;
-	else
-		std::cout << "nah the point isn't inside the triangle" << std::endl;
-	return 0;
-}
+class ScavTrap : public ClapTrap {
+
+	public:
+		ScavTrap( void );
+		ScavTrap( std::string name );
+		~ScavTrap( void );
+		void attack( std::string target );
+		void guardGate( void );
+};
+
+#endif

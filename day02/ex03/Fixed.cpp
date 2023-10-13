@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:23:12 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/09 21:16:59 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/12 21:22:09 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ const int Fixed::store = 8;
 Fixed::Fixed( void ) : fixdPoint( 0 ) { }
 
 Fixed::Fixed( const Fixed& other ) {
-	
+
 	*this = other;
 }
 
@@ -31,7 +31,7 @@ Fixed::Fixed( const float floating ) : fixdPoint( roundf( floating * ( 1 << Fixe
 Fixed::~Fixed( void ) { }
 
 int Fixed::getRawBits( void ) const {
-	
+
 	return this->fixdPoint;
 }
 
