@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/07 17:57:35 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/14 18:39:03 by del-yaag         ###   ########.fr       */
+/*   Created: 2023/10/13 16:55:09 by del-yaag          #+#    #+#             */
+/*   Updated: 2023/10/14 16:58:55 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <iostream>
+#ifndef SCAVTRAP_H
+#define SCAVTRAP_H
 
-int main( void ) {
+#include "ClapTrap.hpp"
 
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+class ScavTrap : public virtual ClapTrap {
 
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
+	public:
+		ScavTrap( void );
+		ScavTrap( std::string name );
+		~ScavTrap( void );
+		void attack( std::string target );
+		void guardGate( void );
+};
 
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	return 0;
-}
+#endif

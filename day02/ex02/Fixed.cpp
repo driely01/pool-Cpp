@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 17:57:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/14 13:22:28 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/14 18:42:05 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ Fixed& Fixed::operator--( void ) {
 
 Fixed Fixed::operator--( int ) {
 
-	Fixed tmp( this->fixdPoint * toFloat() );
+	Fixed tmp( this->fixdPoint / ( float )( 1 << Fixed::store ) );
 	
 	this->fixdPoint -= 1;
 	return tmp;
@@ -132,7 +132,7 @@ Fixed& Fixed::operator++( void ) {
 
 Fixed Fixed::operator++( int ) {
 
-	Fixed tmp( this->fixdPoint * toFloat() );
+	Fixed tmp( this->fixdPoint / ( float )( 1 << Fixed::store ) );
 	
 	this->fixdPoint += 1;
 	return tmp;

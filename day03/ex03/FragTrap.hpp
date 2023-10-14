@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/07 17:57:35 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/14 18:39:03 by del-yaag         ###   ########.fr       */
+/*   Created: 2023/10/13 21:21:33 by del-yaag          #+#    #+#             */
+/*   Updated: 2023/10/14 16:58:46 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <iostream>
+#ifndef FRAGTRAP_H
+#define FRAGTRAP_H
 
-int main( void ) {
+#include "ClapTrap.hpp"
 
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+class FragTrap : public virtual ClapTrap {
 
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
+	public:
+		FragTrap( void );
+		FragTrap( std::string name );
+		~FragTrap( void );
+		void highFivesGuys( void );
+};
 
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	return 0;
-}
+#endif

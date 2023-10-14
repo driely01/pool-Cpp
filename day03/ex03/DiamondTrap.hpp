@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/07 17:57:35 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/14 18:39:03 by del-yaag         ###   ########.fr       */
+/*   Created: 2023/10/14 16:45:11 by del-yaag          #+#    #+#             */
+/*   Updated: 2023/10/14 17:09:35 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <iostream>
+#ifndef DIAMOND_H
+#define DIAMOND_H
 
-int main( void ) {
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+class DiamondTrap : public ScavTrap, public FragTrap {
 
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
+	private:
+		std::string name;
 
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	return 0;
-}
+	public:
+		DiamondTrap( void );
+		DiamondTrap( std::string name );
+		DiamondTrap( const DiamondTrap &other );
+		void operator=( const DiamondTrap &rhs );
+		~DiamondTrap( void );
+		void whoAmI( void );
+};
+
+#endif
