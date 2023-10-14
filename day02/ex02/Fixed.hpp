@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 17:57:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/08 17:28:58 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:21:50 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ class Fixed {
 		float toFloat( void ) const;
 		
 		void operator=( const Fixed& rhs );
-		bool operator<( const Fixed& rhs );
-		bool operator>( const Fixed& rhs );
-		bool operator>=( const Fixed& rhs );
-		bool operator<=( const Fixed& rhs );
-		bool operator==( const Fixed& rhs );
-		bool operator!=( const Fixed& rhs );
+		bool operator<( const Fixed& rhs ) const;
+		bool operator>( const Fixed& rhs ) const;
+		bool operator>=( const Fixed& rhs ) const;
+		bool operator<=( const Fixed& rhs ) const;
+		bool operator==( const Fixed& rhs ) const;
+		bool operator!=( const Fixed& rhs ) const;
 
-		Fixed operator+( Fixed const & rhs );
-		Fixed operator-( Fixed const & rhs );
-		Fixed operator*( Fixed const & rhs );
-		Fixed operator/( Fixed const & rhs );
+		Fixed operator+( Fixed const & rhs ) const;
+		Fixed operator-( Fixed const & rhs ) const;
+		Fixed operator*( Fixed const & rhs ) const;
+		Fixed operator/( Fixed const & rhs ) const;
 
 		Fixed& operator--( void );
 		Fixed operator--( int );

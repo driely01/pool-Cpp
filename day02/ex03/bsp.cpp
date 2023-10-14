@@ -6,27 +6,28 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:23:09 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/12 18:37:33 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/14 12:30:44 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-double ft_abs( double value ) {
+Fixed ft_abs( Fixed value ) {
 
 	if ( value < 0 )
-		return -value;
+		return value * -1;
 	return value;
 }
 
 bool  bsp( Point const a, Point const b, Point const c, Point const point) {
 
-	double totalArea = a.shoelaceArea( a, b, c );
-	double area1 = point.shoelaceArea( b, c, point );
-	double area2 = a.shoelaceArea( point, c, a );
-	double area3 = a.shoelaceArea( b, point, a );
+	Fixed totalArea = a.shoelaceArea( a, b, c );
+	Fixed area1 = point.shoelaceArea( b, c, point );
+	Fixed area2 = a.shoelaceArea( point, c, a );
+	Fixed area3 = a.shoelaceArea( b, point, a );
 
-	if ( !totalArea || !area1 || !area2 || !area3 )
+	if ( totalArea == 0 || area1 == 0 || area2 == 0 || area3 == 0 )
 		return false;
-	return ft_abs( totalArea - ( area1 + area2 + area3 ) ) < 1e-6;
+
+	return ft_abs( totalArea - ( area1 + area2 + area3 ) ) == 0;
 }

@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:23:24 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/10 15:22:24 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/14 12:29:48 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Point::Point( void ) : x( 0 ), y( 0 ) { }
 
 Point::Point( const float valX, const float valY ) : x( valX ), y( valY ) { }
 
-Point::Point( const Point& other ) : x( other.x ), y( other.y ) {
+Point::Point( const Point& other ) {
 
 	*this = other;
 }
@@ -29,14 +29,10 @@ void Point::operator=( const Point& rhs ) {
 	(Fixed)this->y = rhs.y;
 }
 
-float Point::shoelaceArea( Point a, Point b, Point c ) const {
+Fixed Point::shoelaceArea( Point a, Point b, Point c ) const {
 
-	float area = 0.0;
+	Fixed area;
 
-	area += (
-				a.x.toFloat() * ( b.y.toFloat() - c.y.toFloat() ) +
-				b.x.toFloat() * ( c.y.toFloat() - a.y.toFloat() ) +
-				c.x.toFloat() * ( a.y.toFloat() - b.y.toFloat() ) 
-			);
-	return 0.5 * ft_abs( area );
+	area = area + ( a.x * ( b.y - c.y ) + b.x * ( c.y - a.y ) + c.x * ( a.y - b.y ) );
+	return Fixed( 0.5f ) * ft_abs( area );
 }
