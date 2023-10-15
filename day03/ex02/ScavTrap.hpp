@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:55:09 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/13 21:11:04 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/15 17:17:13 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ class ScavTrap : public ClapTrap {
 	public:
 		ScavTrap( void );
 		ScavTrap( std::string name );
+		ScavTrap( const ScavTrap &other );
 		~ScavTrap( void );
+
+		void operator=( const ScavTrap &rhs );
+		
 		void attack( std::string target );
 		void guardGate( void );
 };

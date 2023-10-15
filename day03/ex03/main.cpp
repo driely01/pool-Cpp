@@ -6,37 +6,41 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:28:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/14 13:30:30 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/15 18:39:26 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 #include <iostream>
 
 int main( void ) {
 	
-	ClapTrap a( "jack" );
-	ClapTrap b( "player one" );
-	ScavTrap scav( "mike" );
-	FragTrap f( "folly" );
-	std::cout << std::endl;
+	DiamondTrap d;
+	DiamondTrap d1( "jackob" );
+	ScavTrap s;
+	ScavTrap s1( "susan" );
 
-	a.attack( "jully" );
-	a.beRepaired( 19 );
-	a.takeDamage( 70 );
+	std::cout << std::endl;
+	d = d1;
+	s = s1;
+
+	std::cout << std::endl;
+	s.attack( "hark" );
+	
+	std::cout << std::endl;
+	d.ScavTrap::attack( "jullia" );
+	d.takeDamage( 15 );
+	d.beRepaired( 10 );
+	d.guardGate();
+	d.highFivesGuys();
+	d.whoAmI();
 	std::cout << std::endl;
 	
-	scav.attack( "jack" );
-	scav.beRepaired( 20 );
-	scav.takeDamage( 90 );
-	scav.guardGate();
-	std::cout << std::endl;
-	
-	f.attack( "pedro" );
-	f.beRepaired( 12 );
-	f.takeDamage( 20 );
-	f.highFivesGuys();
+	d1.beRepaired( 200 );
+	d1.ScavTrap::attack( "mike" );
+	d1.highFivesGuys();
+	d1.takeDamage( 10 );
+	d1.whoAmI();
 	std::cout << std::endl;
 	return 0;
 }

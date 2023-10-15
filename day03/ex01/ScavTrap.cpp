@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:55:11 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/13 21:10:58 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/15 18:48:40 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,24 @@ ScavTrap::ScavTrap( std::string name ) {
 	this->attackDamage = 20;
 }
 
+ScavTrap::ScavTrap( const ScavTrap &other ) {
+
+	std::cout << "ScavTrap copy constructor called" << std::endl;
+	*this = other;
+}
+
+void ScavTrap::operator=( const ScavTrap &rhs ) {
+
+	std::cout << "ScavTrap copy assignement operator called" << std::endl;
+
+	if ( this == &rhs )
+		return;
+	this->name = rhs.name;
+	this->hitPoints = rhs.hitPoints;
+	this->energyPoints = rhs.energyPoints;
+	this->attackDamage = rhs.attackDamage;
+}
+
 ScavTrap::~ScavTrap( void ) {
 
 	std::cout << "ScavTrap destructor called" << std::endl;
@@ -41,7 +59,7 @@ void ScavTrap::attack( std::string target ) {
 		std::cout << "ScavTrap " << this->name << " has been destroyed cannot attack " << target << std::endl;
 	else if ( this->energyPoints <= 0 )
 		std::cout << "ScavTrap " << this->name << " has no energy to attack " << target << std::endl;
-	else if ( this->energyPoints > 0 || this->hitPoints > 0 ) {
+	else if ( this->energyPoints > 0 && this->hitPoints > 0 ) {
 
 		this->energyPoints -= 1;
 		std::cout << 

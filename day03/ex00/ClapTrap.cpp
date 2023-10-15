@@ -17,17 +17,18 @@ ClapTrap::ClapTrap( std::string name ) : name( name ) {
 	this->attackDamage = 0;
 }
 
-ClapTrap::ClapTrap( const ClapTrap& other )
-	: name( other.name ), hitPoints( other.hitPoints ),
-	energyPoints( other.energyPoints ), attackDamage( other.attackDamage ) {
+ClapTrap::ClapTrap( const ClapTrap& other ) {
 
-		*this = other;
 		std::cout << "ClapTrap copy constructor called" << std::endl;
+		*this = other;
 }
 
 ClapTrap& ClapTrap::operator=( const ClapTrap& rhs ) {
 
 	std::cout << "ClapTrap copy assignement operator called" << std::endl;
+	
+	if ( this == &rhs )
+		return *this;
 	this->name = rhs.name;
 	this->hitPoints = rhs.hitPoints;
 	this->energyPoints = rhs.energyPoints;
@@ -46,7 +47,7 @@ void ClapTrap::attack( const std::string& target ) {
 		std::cout << "ClapTrap " << this->name << " has been destroyed cannot attack " << target << std::endl;
 	else if ( this->energyPoints <= 0 )
 		std::cout << "ClapTrap " << this->name << " has no energy to attack " << target << std::endl;
-	else if ( this->energyPoints > 0 || this->hitPoints > 0 ) {
+	else if ( this->energyPoints > 0 && this->hitPoints > 0 ) {
 
 		this->energyPoints -= 1;
 		std::cout <<
