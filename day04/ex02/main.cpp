@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 11:10:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/18 13:23:17 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:01:59 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,10 @@
 #include "Cat.hpp"
 #include "WrongCat.hpp"
 
-void f( void ) {
-
-	system( "leaks animal" );
-}
-
 int main( void ) {
 
-	// atexit( f );
-	int size = 10;
+	int size = 4;
 	const Animal *animal[size];
-	std::cout << std::endl;
 	
 	for ( int i = 0; i < size; i++ ) {
 
@@ -44,17 +37,6 @@ int main( void ) {
 
 	for ( int i = 0; i < size; i++ )
 		delete animal[i];
-
-	std::cout << std::endl;
-	
-	Cat b;
-	Cat a = b;
-	std::cout << std::endl;
-	b.getType();
-	a.getType();
-	b.makeSound();
-	a.makeSound();
-	std::cout << std::endl;
 	
 	return 0;
 }

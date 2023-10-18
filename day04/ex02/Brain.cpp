@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:36:48 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/18 13:33:39 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:59:59 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ std::string Brain::getIdea( const unsigned int index ) const {
 	if ( index > 99 ) {
 		
 		std::cout << "Brain invalid index" << std::endl;
-		return NULL;
+		return "NULL";
 	}
 	else {
 
