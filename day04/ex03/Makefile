@@ -1,13 +1,26 @@
-SRC = main.cpp 
+SRC = main.cpp \
+	  AMateria.cpp \
+	  Character.cpp \
+	  MateriaSource.cpp \
+	  Cure.cpp \
+	  Ice.cpp 
+
 
 OBJ = ${SRC:.cpp=.o}
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 RM = rm -f
 
 NAME = animal
-HEADER = 
+HEADER = AMateria.hpp \
+		 Character.hpp \
+		 ICharacter.hpp \
+		 IMateriaSource.hpp \
+		 MateriaSource.hpp \
+		 Cure.hpp \
+		 Ice.hpp
+
 
 all: ${NAME}
 

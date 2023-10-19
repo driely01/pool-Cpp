@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:50:03 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/18 15:37:36 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:05:12 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 
 #include <iostream>
 
+class AMateria;
+
 class ICharacter {
 
 	public:
 		virtual ~ICharacter( void ) {};
 		virtual std::string const &getName( void ) const = 0;
-		virtual void equipe( AMateria *m ) = 0;	
-		virtual void unequipe( int idx ) = 0;
+		virtual void equip( AMateria *m ) = 0;	
+		virtual void unequip( int idx ) = 0;
 		virtual void use( int idx, ICharacter &target ) = 0;
 };
 
