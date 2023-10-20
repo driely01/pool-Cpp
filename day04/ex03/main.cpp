@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:16:28 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/19 17:19:11 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/20 18:02:50 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,21 @@
 #include "Cure.hpp"
 #include <iostream>
 
-// void f( void ) {
+void f( void ) {
 
-// 	system("leaks animal");
-// }
+	system("leaks animal");
+}
 
 int main()
 {
-	// atexit(f);
+	atexit(f);
 	IMateriaSource* src = new MateriaSource();
-	src->learnMateria(new Ice());
+	// Ice ice;
+	// AMateria &mater = ice;
+	// src->learnMateria(&mater);
+	src->learnMateria(new Cure());
+	src->learnMateria(new Cure());
+	src->learnMateria(new Cure());
 	src->learnMateria(new Cure());
 	ICharacter* me = new Character("me");
 	AMateria* tmp;

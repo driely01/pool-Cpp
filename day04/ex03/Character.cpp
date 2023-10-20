@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:57:30 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/19 17:16:53 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/20 15:49:39 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ Character::~Character( void ) {
 	for ( int i = 0; i < 4; i++ ) {
 
 		delete this->inventory[i];
+		this->inventory[i] = NULL;
 	}
 	for ( int i = 0; this->garbage[i] != NULL; i++ ) {
 
@@ -80,7 +81,12 @@ std::string const & Character::getName( void ) const {
 void Character::equip( AMateria *m ) {
 
 	for ( int i = 0; i < 4; i++ ) {
-
+		
+		if ( this->inventory[i] == m ) {
+			
+			std::cout << "you can't equip. already equiped." << std::endl;
+			return;
+		}
 		if ( this->inventory[i] == NULL ) {
 
 			this->inventory[i] = m;

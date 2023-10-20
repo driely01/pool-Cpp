@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:16:34 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/19 16:58:30 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:54:51 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ std::string const & AMateria::getType( void ) const {
 
 void AMateria::use( ICharacter &target ) {
 
-	std::cout << "AMateria use fuction " << target.getName() << std::endl;
+	(void)target;
 }
