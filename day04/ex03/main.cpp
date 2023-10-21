@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:16:28 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/21 12:24:29 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/21 14:36:38 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,8 @@
 #include "Cure.hpp"
 #include <iostream>
 
-void f( void ) {
-
-	system("leaks animal");
-}
-
 int main()
 {
-	atexit(f);
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
