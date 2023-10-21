@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:57:30 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/20 15:49:39 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/21 12:22:58 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void Character::equip( AMateria *m ) {
 		
 		if ( this->inventory[i] == m ) {
 			
-			std::cout << "you can't equip. already equiped." << std::endl;
+			std::cout << "you can't equip. already equiped, or argument is null." << std::endl;
 			return;
 		}
 		if ( this->inventory[i] == NULL ) {
@@ -111,9 +111,15 @@ void Character::unequip( int idx ) {
 
 void Character::use( int idx, ICharacter &target ) {
 
-	if ( idx < 0 || idx > 3 )
+	if ( idx < 0 || idx > 3 ) {
+		
+		std::cout << "invalid index" << std::endl;
 		return;
-	else if ( !this->inventory[idx] )
+	}
+	else if ( !this->inventory[idx] ) {
+
+		std::cout << "empty index" << std::endl;
 		return;
+	}
 	this->inventory[idx]->use( target );
 }

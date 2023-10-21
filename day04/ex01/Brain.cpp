@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:36:48 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/18 14:02:28 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/21 11:50:39 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ Brain & Brain::operator=( const Brain &rhs ) {
 
 std::string Brain::getIdea( const unsigned int index ) const {
 
-	if ( index > 99 ) {
+	if ( index < 0 || index > 99 ) {
 		
 		std::cout << "Brain invalid index" << std::endl;
 		return "NULL";
@@ -58,7 +58,7 @@ std::string Brain::getIdea( const unsigned int index ) const {
 
 void Brain::setIdea( const unsigned int index ) {
 
-	if ( index > 99 ) {
+	if ( index < 0 || index > 99 ) {
 
 		std::cout << "Brain invalid index" << std::endl;
 		return;

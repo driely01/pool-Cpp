@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:06:27 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/20 18:03:58 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/21 12:01:44 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,14 @@ void MateriaSource::learnMateria( AMateria * materia ) {
 			return;
 		}
 	}
+	delete materia;
 }
 
 AMateria *MateriaSource::createMateria( std::string const &type ) {
 
 	for ( int i = 0; i < 4; i++ ) {
 
-		if ( this->inventory[i]->getType() == type ) {
+		if ( this->inventory[i] && this->inventory[i]->getType() == type ) {
 
 			return this->inventory[i]->clone();
 		}
