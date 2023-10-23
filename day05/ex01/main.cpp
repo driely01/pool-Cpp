@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:24 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/23 18:05:42 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:31:05 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int main( void ) {
 	try {
 
 		b.incrementGrade();
+		if ( b.getGrade() < 1 )
+			throw Bureaucrat::GradeTooHightException();
 		std::cout << b << std::endl;
 	}
 	catch ( Bureaucrat::GradeTooHightException& e ) {
@@ -30,6 +32,8 @@ int main( void ) {
 	try {
 
 		c.decrementGrade();
+		if ( c.getGrade() > 150 )
+			throw Bureaucrat::GradeTooLowException();
 		std::cout << b << std::endl;
 	}
 	catch ( Bureaucrat::GradeTooLowException& e1 ) {
