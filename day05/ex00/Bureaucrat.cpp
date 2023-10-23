@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:28 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/22 17:44:40 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:22:56 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,14 @@ std::ostream &operator<<( std::ostream &o, const Bureaucrat &rhs ) {
 	
 	o << rhs.getName() << ", beaurucrat grade " << rhs.getGrade();
 	return o;
+}
+
+const char * Bureaucrat::GradeTooHightException::what( void ) const throw() {
+
+	return "the grade is too hight!";
+}
+
+const char * Bureaucrat::GradeTooLowException::what( void ) const throw() {
+	
+	return "the grade is too low!";
 }
