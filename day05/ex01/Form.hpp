@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:35:13 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/23 18:23:07 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/23 22:34:31 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define FORM_HPP
 
 #include <iostream>
+#include "Bureaucrat.hpp"
 
 class Form {
 
@@ -29,18 +30,24 @@ class Form {
 		~Form( void );
 		Form &operator=( const Form &rhs );
 		
-		const std::string getName( void ) const;
-		const int getSignGrade( void ) const;
-		const int getExecGrade( void ) const;
+		std::string getName( void ) const;
+		int getSignGrade( void ) const;
+		int getExecGrade( void ) const;
 		bool getSign( void ) const;
+		void beSigned( Bureaucrat bureau );
+		
 		class GradeTooHightException : public std::exception {
-
-			const char * what( void ) const throw();
+			
+			public:
+				const char * what( void ) const throw();
 		};
 		class GradeTooLowException : public std::exception {
 
-			const char * what( void ) const throw();
+			public:
+				const char * what( void ) const throw();
 		};
 };
+
+std::ostream &operator<<( std::ostream &o, const Form &rhs );
 
 #endif

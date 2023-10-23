@@ -1,5 +1,6 @@
 SRC = main.cpp \
-	  Bureaucrat.cpp
+	  Bureaucrat.cpp \
+	  Form.cpp
 
 
 OBJ = ${SRC:.cpp=.o}
@@ -8,8 +9,8 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
-NAME = bureaucrat
-HEADER = Bureaucrat.hpp
+NAME = form
+HEADER = Bureaucrat.hpp Form.hpp
 
 
 all: ${NAME}

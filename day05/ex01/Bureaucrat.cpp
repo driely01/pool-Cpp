@@ -6,13 +6,20 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:28 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/23 17:22:56 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/23 22:33:13 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-Bureaucrat::Bureaucrat( std::string name, int grade ) : name( name ), grade( grade ) { }
+Bureaucrat::Bureaucrat( std::string name, int grade ) : name( name ), grade( grade ) {
+
+	if ( this->grade < 1 )
+		throw GradeTooHightException();
+	else if ( this->grade > 150 )
+		throw GradeTooLowException();
+}
 
 Bureaucrat::Bureaucrat( const Bureaucrat &other ) {
 
@@ -25,7 +32,7 @@ Bureaucrat &Bureaucrat::operator=( const Bureaucrat &rhs ) {
 
 	if ( this == &rhs )
 		return *this;
-	// what about name is const
+	( std::string & ) this->name = rhs.name;
 	this->grade = rhs.grade;
 	return *this;
 }
@@ -64,4 +71,14 @@ const char * Bureaucrat::GradeTooHightException::what( void ) const throw() {
 const char * Bureaucrat::GradeTooLowException::what( void ) const throw() {
 	
 	return "the grade is too low!";
+}
+
+void Bureaucrat::signForm( Form form ) const {
+
+	GradeTooLowException e;
+	
+	if ( form.getSign() == true && this->grade <= form.getSignGrade())
+		std::cout << this->getName() << " signed " << form.getName() << std::endl;
+	else
+		std::cout << this->getName() << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
 }
