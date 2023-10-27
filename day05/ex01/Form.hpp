@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:35:13 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/23 22:34:31 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:33:44 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class Form {
 		const int execGrade;
 		
 	public:
+		Form( void );
 		Form( const std::string name, const int signGrade, const int execGrade );
 		Form( const Form &other );
 		~Form( void );

@@ -6,35 +6,26 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:24 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/23 18:05:42 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:29:14 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 int main( void ) {
-
-	Bureaucrat b( "hassan", 150 );
-	Bureaucrat c( "mike", 150 );
 	
 	try {
 
+		Bureaucrat b( "hassan", 150 );
+		Bureaucrat c( "mike", 150 );
 		b.incrementGrade();
 		std::cout << b << std::endl;
-	}
-	catch ( Bureaucrat::GradeTooHightException& e ) {
-
-		std::cout << e.what() << std::endl;
-	}
-	
-	try {
-
 		c.decrementGrade();
 		std::cout << b << std::endl;
-	}
-	catch ( Bureaucrat::GradeTooLowException& e1 ) {
+		
+	} catch ( std::exception &e ) {
 
-		std::cout << e1.what() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 	return 0;
 }

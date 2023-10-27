@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:24 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/23 22:34:08 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:36:33 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int main( void ) {
 
 	try {
 		
+		Form form;
+		std::cout << form << std::endl;
 		Form f( "khalid", 1, 10 );
 		Bureaucrat b( "med", 1 );
 		Bureaucrat b1( "med", 2 );

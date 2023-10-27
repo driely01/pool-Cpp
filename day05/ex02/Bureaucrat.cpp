@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:28 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/24 15:33:06 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/27 18:37:36 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ const char * Bureaucrat::GradeTooLowException::what( void ) const throw() {
 	return "the grade is too low!";
 }
 
-void Bureaucrat::signForm( Form form ) const {
+void Bureaucrat::signForm( Form &form ) const {
 
 	GradeTooLowException e;
 	

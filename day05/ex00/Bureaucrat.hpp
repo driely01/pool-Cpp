@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/23 17:12:06 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:22:13 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ class Bureaucrat {
 		int grade;
 		
 	public:
-		Bureaucrat( std::string name, int grade );
+		Bureaucrat( void );
+		Bureaucrat( const std::string name, int grade );
 		Bureaucrat( const Bureaucrat &other );
 		~Bureaucrat( void );
 		

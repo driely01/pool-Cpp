@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/24 15:31:20 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/27 18:37:16 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class Bureaucrat {
 		int getGrade( void ) const;
 		void incrementGrade( void );
 		void decrementGrade( void );
-		void signForm( Form form ) const;
+		void signForm( Form &form ) const;
 		class GradeTooHightException : public std::exception {
 			
 			public:
