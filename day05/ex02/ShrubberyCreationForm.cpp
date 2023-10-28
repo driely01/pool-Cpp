@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:00:18 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/27 18:19:09 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/28 15:37:43 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm( void ) : target( "anonyme" ) { }
+
+ShrubberyCreationForm::ShrubberyCreationForm( const std::string name, const int signGrade, const int execGrade ) : AForm( name, signGrade, execGrade ), target( name ) { }
 
 ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) : target( target ) { }
 
@@ -32,43 +34,49 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=( const ShrubberyCreation
 	return *this;
 }
 
-void ShrubberyCreationForm::execute( Bureaucrat const &executor ) const {
+int ShrubberyCreationForm::execute( Bureaucrat const &executor ) const {
 
-	if ( this->getSignGrade() <= 145 && this->getExecGrade() <= 137 ) {
+	if ( executor.signForm( ( AForm &)*this ) && this->getSignGrade() <= 145 && this->getExecGrade() <= 137 ) {
 		
 		std::ofstream outFile( this->target + "_shrubbery" );
 		if ( !outFile ) {
 			
 			std::cout << "error: open: cannot open this outfile." << std::endl;
-			return;
+			return 0;
 		}
-		outFile << "                                                         .\
-                                              .         ;  \
-                 .              .              ;%     ;;   \
-                   ,           ,                :;%  %;   \
-                    :         ;                   :;%;'     .,   \
-           ,.        %;     %;            ;        %;'    ,;\
-             ;       ;%;  %%;        ,     %;    ;%;    ,%'\
-              %;       %;%;      ,  ;       %;  ;%;   ,%;' \
-               ;%;      %;        ;%;        % ;%;  ,%;'\
-                `%;.     ;%;     %;'         `;%%;.%;'\
-                 `:;%.    ;%%. %@;        %; ;@%;%'\
-                    `:%;.  :;bd%;          %;@%;'\
-                      `@%:.  :;%.         ;@@%;'   \
-                        `@%.  `;@%.      ;@@%;         \
-                          `@%%. `@%%    ;@@%;        \
-                            ;@%. :@%%  %@@%;       \
-                              %@bd%%%bd%%:;     \
-                                #@%%%%%:;;\
-                                %@@%%%::;\
-                                %@@@%(o);  . '         \
-                                %@@@o%;:(.,'         \
-                            `.. %@@@o%::;         \
-                               `)@@@o%::;         \
-                                %@@(o)::;        \
-                               .%@@@@%::;         \
-                               ;%@@@@%::;.          \
-                              ;%@@@@%%:;;;. \
+
+		outFile << "                                                         .\n\
+                                              .         ;\n\
+                 .              .              ;%     ;;\n\
+                   ,           ,                :;%  %;\n\
+                    :         ;                   :;%;'     .,\n\
+           ,.        %;     %;            ;        %;'    ,;\n\
+             ;       ;%;  %%;        ,     %;    ;%;    ,%'\n\
+              %;       %;%;      ,  ;       %;  ;%;   ,%;' \n\
+               ;%;      %;        ;%;        % ;%;  ,%;'\n\
+                `%;.     ;%;     %;'         `;%%;.%;'\n\
+                 `:;%.    ;%%. %@;        %; ;@%;%'\n\
+                    `:%;.  :;bd%;          %;@%;'\n\
+                      `@%:.  :;%.         ;@@%;'\n\
+                        `@%.  `;@%.      ;@@%; \n\
+                          `@%%. `@%%    ;@@%;\n\
+                            ;@%. :@%%  %@@%;\n\
+                              %@bd%%%bd%%:;\n\
+                                #@%%%%%:;;\n\
+                                %@@%%%::;\n\
+                                %@@@%(o);  . '\n\
+                                %@@@o%;:(.,'\n\
+                            `.. %@@@o%::;\n\
+                               `)@@@o%::;\n\
+                                %@@(o)::;\n\
+                               .%@@@@%::;\n\
+                               ;%@@@@%::;.\n\
+                              ;%@@@@%%:;;;. \n\
                           ...;%@@@@@%%:;;;;,..";
+		return 1;
+	} else {
+		
+		throw Bureaucrat::GradeTooLowException();
+		return 0;
 	}
 }

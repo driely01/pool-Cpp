@@ -6,13 +6,15 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:38:14 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/27 18:08:29 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/28 15:57:38 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm( void ) : target( "anonyme" ) { }
+
+PresidentialPardonForm::PresidentialPardonForm( const std::string name, const int signGrade, const int execGrade ) : AForm( name, signGrade, execGrade ), target( name ) { }
 
 PresidentialPardonForm::PresidentialPardonForm( std::string target ) : target( target ) { }
 
@@ -31,10 +33,15 @@ PresidentialPardonForm &PresidentialPardonForm::operator=( const PresidentialPar
 	return *this;
 }
 
-void PresidentialPardonForm::execute( Bureaucrat const &executor ) const {
+int PresidentialPardonForm::execute( Bureaucrat const &executor ) const {
 
-	if ( this->getExecGrade() <= 5 && this->getSignGrade() <= 25 ) {
+	if ( executor.signForm( (AForm &)*this ) && this->getExecGrade() <= 5 && this->getSignGrade() <= 25 ) {
 
-		std::cout << this->target << " has been pardoned by Zaphoned Beeblebrox";
+		std::cout << this->target << " has been pardoned by Zaphoned Beeblebrox" << std::endl;
+		return 1;
+	} else {
+		
+		throw Bureaucrat::GradeTooLowException();
+		return 0;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:24:23 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/27 18:35:43 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/28 15:46:10 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <time.h>
 
 RobotomyRequestForm::RobotomyRequestForm( void ) : target( "anonyme" ) { }
+
+RobotomyRequestForm::RobotomyRequestForm( const std::string name, const int signGrade, const int execGrade ) : AForm( name, signGrade, execGrade ), target( name ) { }
 
 RobotomyRequestForm::RobotomyRequestForm( std::string target ) : target( target ) { }
 
@@ -32,9 +34,9 @@ RobotomyRequestForm &RobotomyRequestForm::operator=( const RobotomyRequestForm &
 	return *this;
 }
 
-void RobotomyRequestForm::execute( Bureaucrat const &executor ) const {
+int RobotomyRequestForm::execute( Bureaucrat const &executor ) const {
 
-	if ( this->getSignGrade() <= 72 && this->getExecGrade() <= 45 ) {
+	if ( executor.signForm( (AForm &)*this ) && this->getSignGrade() <= 72 && this->getExecGrade() <= 45 ) {
 
 		int randN;
 		
@@ -46,7 +48,12 @@ void RobotomyRequestForm::execute( Bureaucrat const &executor ) const {
 			std::cout << this->target << " has been robotomized successfully 50% of the time" << std::endl;
 		} else {
 
-			std::cout << " the robotomy failed" << std::endl;
+			std::cout << "the robotomy failed" << std::endl;
 		}
+		return 1;
+	} else {
+		
+		throw Bureaucrat::GradeTooLowException();
+		return 0;
 	}
 }

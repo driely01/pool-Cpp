@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:19:53 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/27 18:23:51 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/28 15:44:25 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,20 @@
 
 #include "AForm.hpp"
 
-class RobotomyRequestForm : public Form {
-	
-	public:
-		std::string target;
+class RobotomyRequestForm : public AForm {
 	
 	private:
+		std::string target;
+	
+	public:
 		RobotomyRequestForm( void );
+		RobotomyRequestForm( const std::string name, const int signGrade, const int execGrade );
 		RobotomyRequestForm( std::string target );
 		RobotomyRequestForm( const RobotomyRequestForm &other );
 		~RobotomyRequestForm( void );
 		RobotomyRequestForm &operator=( const RobotomyRequestForm &rhs );
 		
-		void execute( Bureaucrat const &executor ) const;
+		int execute( Bureaucrat const &executor ) const;
 };
 
 #endif

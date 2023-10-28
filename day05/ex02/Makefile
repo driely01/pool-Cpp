@@ -1,6 +1,9 @@
 SRC = main.cpp \
 	  Bureaucrat.cpp \
-	  Form.cpp
+	  AForm.cpp \
+	  PresidentialPardonForm.cpp \
+	  RobotomyRequestForm.cpp \
+	  ShrubberyCreationForm.cpp
 
 
 OBJ = ${SRC:.cpp=.o}
@@ -10,7 +13,11 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 NAME = form
-HEADER = Bureaucrat.hpp Form.hpp
+HEADER = Bureaucrat.hpp \
+		 AForm.hpp \
+		 PresidentialPardonForm.hpp \
+		 RobotomyRequestForm.hpp \
+		 ShrubberyCreationForm.hpp
 
 
 all: ${NAME}

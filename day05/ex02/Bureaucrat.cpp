@@ -6,12 +6,12 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:28 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/27 18:37:36 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/10/28 15:02:46 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat( void ) : name( "anonyme buareu" ), grade( 150 ) { }
 
@@ -67,20 +67,36 @@ std::ostream &operator<<( std::ostream &o, const Bureaucrat &rhs ) {
 
 const char * Bureaucrat::GradeTooHightException::what( void ) const throw() {
 
-	return "the grade is too hight!";
+	return "the grade of bureaucrat is too hight!";
 }
 
 const char * Bureaucrat::GradeTooLowException::what( void ) const throw() {
 	
-	return "the grade is too low!";
+	return "the grade of bureaucrat is too low!";
 }
 
-void Bureaucrat::signForm( Form &form ) const {
+int Bureaucrat::signForm( AForm &form ) const {
 
 	GradeTooLowException e;
 	
-	if ( form.getSign() == true && this->grade <= form.getSignGrade())
+	if ( form.getSign() == true && this->grade <= form.getSignGrade()) {
+		
 		std::cout << this->getName() << " signed " << form.getName() << std::endl;
-	else
+		return 1;
+	} else {
+		
 		std::cout << this->getName() << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+		return 0;
+	}
+}
+
+void Bureaucrat::executeForm( AForm const &form ) {
+
+	if ( form.execute( *this ) ) {
+
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+	} else {
+
+		std::cout << this->getName() << " cannot execute " << form.getName() << std::endl;
+	}
 }
