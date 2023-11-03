@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:19:53 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/28 15:44:25 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:13:31 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ class RobotomyRequestForm : public AForm {
 	
 	public:
 		RobotomyRequestForm( void );
-		RobotomyRequestForm( const std::string name, const int signGrade, const int execGrade );
 		RobotomyRequestForm( std::string target );
 		RobotomyRequestForm( const RobotomyRequestForm &other );
 		~RobotomyRequestForm( void );

@@ -6,17 +6,15 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:38:14 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/01 14:43:33 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:28:39 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm( void ) : AForm( "Presidential Pardon Form", 150, 150 ), target( "anonyme" ) { }
+PresidentialPardonForm::PresidentialPardonForm( void ) : AForm( "Presidential Pardon Form", 25, 5 ), target( "anonyme" ) { }
 
-PresidentialPardonForm::PresidentialPardonForm( const std::string name, const int signGrade, const int execGrade ) : AForm( "Presidential Pardon Form", signGrade, execGrade ), target( name ) { }
-
-PresidentialPardonForm::PresidentialPardonForm( std::string target ) : AForm( "Presidential Pardon Form", 150, 150 ), target( target ) { }
+PresidentialPardonForm::PresidentialPardonForm( std::string target ) : AForm( "Presidential Pardon Form", 25, 5 ), target( target ) { }
 
 PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm &other ) {
 
@@ -35,7 +33,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=( const PresidentialPar
 
 int PresidentialPardonForm::execute( Bureaucrat const &executor ) const {
 
-	if ( executor.signForm( (AForm &)*this ) && this->getExecGrade() <= 5 && this->getSignGrade() <= 25 ) {
+	if ( executor.signForm( (AForm &)*this ) && executor.getGrade() <= this->getExecGrade() ) {
 
 		std::cout << this->target << " has been pardoned by Zaphoned Beeblebrox" << std::endl;
 		return 1;

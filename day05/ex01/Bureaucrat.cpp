@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:28 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/24 15:33:06 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:51:06 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,18 @@ const char * Bureaucrat::GradeTooLowException::what( void ) const throw() {
 
 void Bureaucrat::signForm( Form form ) const {
 
-	GradeTooLowException e;
+	// GradeTooLowException e;
 	
-	if ( form.getSign() == true && this->grade <= form.getSignGrade())
+	// if ( form.getSign() == true && this->grade <= form.getSignGrade())
+	// 	std::cout << this->getName() << " signed " << form.getName() << std::endl;
+	// else
+	// 	std::cout << this->getName() << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+	try {
+
+		form.beSigned( *this );
 		std::cout << this->getName() << " signed " << form.getName() << std::endl;
-	else
+	} catch ( std::exception &e ) {
+
 		std::cout << this->getName() << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+	}
 }

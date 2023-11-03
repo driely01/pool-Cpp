@@ -6,18 +6,16 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:24:23 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/28 15:46:10 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:29:29 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 #include <time.h>
 
-RobotomyRequestForm::RobotomyRequestForm( void ) : target( "anonyme" ) { }
+RobotomyRequestForm::RobotomyRequestForm( void ) : AForm( "Robotomy Request Form", 72, 45 ), target( "anonyme" ) { }
 
-RobotomyRequestForm::RobotomyRequestForm( const std::string name, const int signGrade, const int execGrade ) : AForm( name, signGrade, execGrade ), target( name ) { }
-
-RobotomyRequestForm::RobotomyRequestForm( std::string target ) : target( target ) { }
+RobotomyRequestForm::RobotomyRequestForm( std::string target ) : AForm( "Robotomy Request Form", 72, 45 ), target( target ) { }
 
 RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm &other ) {
 
@@ -36,7 +34,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=( const RobotomyRequestForm &
 
 int RobotomyRequestForm::execute( Bureaucrat const &executor ) const {
 
-	if ( executor.signForm( (AForm &)*this ) && this->getSignGrade() <= 72 && this->getExecGrade() <= 45 ) {
+	if ( executor.signForm( (AForm &)*this ) && executor.getGrade() <= this->getExecGrade() ) {
 
 		int randN;
 		

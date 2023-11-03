@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 14:20:14 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/28 15:58:21 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:39:29 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main( void ) {
 	try {
 		
 		//robot
-		RobotomyRequestForm robot( "robot", 72, 45 );
+		RobotomyRequestForm robot( "robot" );
 		Bureaucrat b( "bureau1", 3 );
 		AForm &form = robot;
 
@@ -29,16 +29,22 @@ int main( void ) {
 		std::cout << std::endl;
 		
 		//presidon
-		PresidentialPardonForm presidon( "presidon", 25, 5 );
+		PresidentialPardonForm presidon( "presidon" );
 		Bureaucrat b1( "bureau2", 25 );
+		
+		for ( int i = 1; i < 25; i++ )
+			b1.incrementGrade();
+
+		std::cout << std::endl;
 		AForm &form1 = presidon;
 		std::cout << form1 << std::endl;
 		form1.beSigned( b1 );
 		form1.execute( b1 );
+		std::cout << form1 << std::endl;
 		std::cout << std::endl;
 
 		//shrubbery
-		ShrubberyCreationForm shrubbery( "shrubbery", 145, 137 );
+		ShrubberyCreationForm shrubbery( "shrubbery" );
 		Bureaucrat b2( "bureau3", 145 );
 		AForm &form2 = shrubbery;
 

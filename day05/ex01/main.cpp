@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:24 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/24 15:36:33 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:51:57 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main( void ) {
 		Bureaucrat b( "med", 1 );
 		Bureaucrat b1( "med", 2 );
 		f.beSigned( b );
+		b.signForm( f );
 		std::cout << f << std::endl;
 		// b1.signForm( f );
 	} catch ( std::exception &e ) {

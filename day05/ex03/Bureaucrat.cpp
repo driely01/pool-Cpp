@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:28 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/28 15:02:46 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:36:33 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,15 @@ int Bureaucrat::getGrade( void ) const {
 
 void Bureaucrat::incrementGrade( void ) {
 
+	if ( this->grade == 1 ) 
+		throw Bureaucrat::GradeTooHightException();
 	this->grade -= 1;
 }
 
 void Bureaucrat::decrementGrade( void ) {
 
+	if ( this->grade == 150 )
+		throw Bureaucrat::GradeTooLowException();
 	this->grade += 1;
 }
 

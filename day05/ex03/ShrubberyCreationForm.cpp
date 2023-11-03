@@ -6,18 +6,16 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:00:18 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/01 14:44:18 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:27:22 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm( void ) : AForm( "Shrubbery Creation Form", 150, 150 ), target( "anonyme" ) { }
+ShrubberyCreationForm::ShrubberyCreationForm( void ) : AForm( "Shrubbery Creation Form", 145, 137 ), target( "anonyme" ) { }
 
-ShrubberyCreationForm::ShrubberyCreationForm( const std::string name, const int signGrade, const int execGrade ) : AForm( "Shrubbery Creation Form", signGrade, execGrade ), target( name ) { }
-
-ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) : AForm( "Shrubbery Creation Form", 150, 150 ), target( target ) { }
+ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) : AForm( "Shrubbery Creation Form", 145, 137 ), target( target ) { }
 
 ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm &other ) {
 
@@ -36,7 +34,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=( const ShrubberyCreation
 
 int ShrubberyCreationForm::execute( Bureaucrat const &executor ) const {
 
-	if ( executor.signForm( ( AForm &)*this ) && this->getSignGrade() <= 145 && this->getExecGrade() <= 137 ) {
+	if ( executor.signForm( ( AForm &)*this ) && executor.getGrade() <= this->getExecGrade() ) {
 		
 		std::ofstream outFile( this->target + "_shrubbery" );
 		if ( !outFile ) {

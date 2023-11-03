@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:30:43 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/28 15:37:56 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:13:18 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ class PresidentialPardonForm : public AForm {
 	
 	public:
 		PresidentialPardonForm( void );
-		PresidentialPardonForm( const std::string name, const int signGrade, const int execGrade );
 		PresidentialPardonForm( std::string target );
 		PresidentialPardonForm( const PresidentialPardonForm &other );
 		~PresidentialPardonForm( void );
