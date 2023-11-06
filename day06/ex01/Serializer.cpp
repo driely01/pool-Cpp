@@ -24,7 +24,5 @@ uintptr_t Serializer::serialize( Data *ptr ) {
 
 Data *Serializer::deserialize( uintptr_t raw ) {
 
-	// uintptr_t *u = new uintptr_t;
-	// u = &raw;
 	return reinterpret_cast<Data *>( raw );
 }
