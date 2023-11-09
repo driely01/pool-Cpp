@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 18:41:50 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/09 18:52:30 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/09 18:57:27 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,8 @@
 
 #define MAX_VAL 10
 
-void f( void ) {
-    
-    system("leaks array");
-}
 int main(int, char**)
 {
-    atexit( f );
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
