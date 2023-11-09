@@ -12,3 +12,5 @@ and we learn about `OOP` `floating points` `fixed points` `inheritance` `abstrac
 4. [fixed point:](https://www.geeksforgeeks.org/fixed-point-representation/)
 5. [floating point:](https://en.wikipedia.org/wiki/Floating-point_arithmetic)
 6. [inheritance:](https://www.geeksforgeeks.org/inheritance-in-c/)
+7. [exceptions](https://www.geeksforgeeks.org/exception-handling-c/)
+8. [templates](https://www.geeksforgeeks.org/templates-cpp/)
