@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:19:53 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/03 18:13:31 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:45:12 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class RobotomyRequestForm : public AForm {
 		~RobotomyRequestForm( void );
 		RobotomyRequestForm &operator=( const RobotomyRequestForm &rhs );
 		
-		int execute( Bureaucrat const &executor ) const;
+		void execute( Bureaucrat const &executor ) const;
 };
 
 #endif

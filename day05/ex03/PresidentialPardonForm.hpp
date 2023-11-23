@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:30:43 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/03 18:13:51 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:43:53 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class PresidentialPardonForm : public AForm {
 		~PresidentialPardonForm( void );
 		PresidentialPardonForm &operator=( const PresidentialPardonForm &rhs );
 
-		int execute( Bureaucrat const &executor ) const;
+		void execute( Bureaucrat const &executor ) const;
 };
 
 #endif

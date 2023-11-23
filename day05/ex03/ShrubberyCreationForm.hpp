@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:54:46 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/03 18:14:07 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:54:22 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class ShrubberyCreationForm : public AForm {
 		~ShrubberyCreationForm( void );
 		ShrubberyCreationForm &operator=( const ShrubberyCreationForm &rhs );
 
-		int execute( Bureaucrat const &executor ) const;
+		void execute( Bureaucrat const &executor ) const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:35:13 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/28 15:37:28 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:44:50 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class AForm {
 		int getExecGrade( void ) const;
 		bool getSign( void ) const;
 		void beSigned( Bureaucrat bureau );
-		int virtual execute( Bureaucrat const &executor ) const = 0;
+		void virtual execute( Bureaucrat const &executor ) const = 0;
 		
 		class GradeTooHightException : public std::exception {
 			

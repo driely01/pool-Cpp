@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:28 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/03 15:51:06 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:40:04 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,15 @@ int Bureaucrat::getGrade( void ) const {
 
 void Bureaucrat::incrementGrade( void ) {
 
+	if ( this->grade == 1 )
+		throw Bureaucrat::GradeTooHightException();
 	this->grade -= 1;
 }
 
 void Bureaucrat::decrementGrade( void ) {
 
+	if ( this->grade == 150 )
+		throw Bureaucrat::GradeTooLowException();
 	this->grade += 1;
 }
 
@@ -77,18 +81,8 @@ const char * Bureaucrat::GradeTooLowException::what( void ) const throw() {
 
 void Bureaucrat::signForm( Form form ) const {
 
-	// GradeTooLowException e;
-	
-	// if ( form.getSign() == true && this->grade <= form.getSignGrade())
-	// 	std::cout << this->getName() << " signed " << form.getName() << std::endl;
-	// else
-	// 	std::cout << this->getName() << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
-	try {
-
-		form.beSigned( *this );
-		std::cout << this->getName() << " signed " << form.getName() << std::endl;
-	} catch ( std::exception &e ) {
-
-		std::cout << this->getName() << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
-	}
+	if ( form.getSign() )
+		std::cout << this->getName() <<  " Signed " << form.getName() <<  std::endl;
+	else
+		std::cout << this->getName() << " couldn't sign " << form.getName() << " because the grade of bureaucrat is too low!" << std::endl;
 }

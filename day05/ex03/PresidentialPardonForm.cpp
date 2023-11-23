@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:38:14 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/03 18:28:39 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:50:28 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,10 @@ PresidentialPardonForm &PresidentialPardonForm::operator=( const PresidentialPar
 	return *this;
 }
 
-int PresidentialPardonForm::execute( Bureaucrat const &executor ) const {
+void PresidentialPardonForm::execute( Bureaucrat const &executor ) const {
 
-	if ( executor.signForm( (AForm &)*this ) && executor.getGrade() <= this->getExecGrade() ) {
-
+	if ( this->getSign() && executor.getGrade() <= this->getExecGrade() ) 
 		std::cout << this->target << " has been pardoned by Zaphoned Beeblebrox" << std::endl;
-		return 1;
-	} else {
-		
+	else 
 		throw Bureaucrat::GradeTooLowException();
-		return 0;
-	}
 }

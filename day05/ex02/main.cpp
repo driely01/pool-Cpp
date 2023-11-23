@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 14:20:14 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/03 18:39:29 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:57:04 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ int main( void ) {
 		
 		//robot
 		RobotomyRequestForm robot( "robot" );
-		Bureaucrat b( "bureau1", 3 );
+		Bureaucrat b( "bureau1", 45 );
 		AForm &form = robot;
 
 		std::cout << form << std::endl;
 		form.beSigned( b );
+		b.executeForm( form );
 		form.execute( b );
 		std::cout << std::endl;
 		
-		//presidon
+		// presidon
 		PresidentialPardonForm presidon( "presidon" );
 		Bureaucrat b1( "bureau2", 25 );
 		
@@ -43,9 +44,9 @@ int main( void ) {
 		std::cout << form1 << std::endl;
 		std::cout << std::endl;
 
-		//shrubbery
+		// shrubbery
 		ShrubberyCreationForm shrubbery( "shrubbery" );
-		Bureaucrat b2( "bureau3", 145 );
+		Bureaucrat b2( "bureau3", 137 );
 		AForm &form2 = shrubbery;
 
 		std::cout << form2 << std::endl;
@@ -53,7 +54,7 @@ int main( void ) {
 		form2.execute( b2 );
 	} catch( std::exception &e ) {
 
-		std::cout << e.what() << std::endl;
+		std::cout << "from main program: " << e.what() << std::endl;
 	}
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:24 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/10/24 15:29:14 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:30:06 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main( void ) {
 	
 	try {
 
-		Bureaucrat b( "hassan", 150 );
+		Bureaucrat b;
 		Bureaucrat c( "mike", 150 );
 		b.incrementGrade();
 		std::cout << b << std::endl;

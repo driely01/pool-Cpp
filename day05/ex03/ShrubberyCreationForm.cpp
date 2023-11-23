@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:00:18 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/03 18:27:22 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:52:58 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,14 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=( const ShrubberyCreation
 	return *this;
 }
 
-int ShrubberyCreationForm::execute( Bureaucrat const &executor ) const {
+void ShrubberyCreationForm::execute( Bureaucrat const &executor ) const {
 
-	if ( executor.signForm( ( AForm &)*this ) && executor.getGrade() <= this->getExecGrade() ) {
-		
+	if ( this->getSign() && executor.getGrade() <= this->getExecGrade() ) {
+  
 		std::ofstream outFile( this->target + "_shrubbery" );
 		if ( !outFile ) {
-			
 			std::cout << "error: open: cannot open this outfile." << std::endl;
-			return 0;
-		}
+	}
 
 		outFile << "                                                         .\n\
                                               .         ;\n\
@@ -71,10 +69,8 @@ int ShrubberyCreationForm::execute( Bureaucrat const &executor ) const {
                                ;%@@@@%::;.\n\
                               ;%@@@@%%:;;;. \n\
                           ...;%@@@@@%%:;;;;,..";
-		return 1;
 	} else {
 		
 		throw Bureaucrat::GradeTooLowException();
-		return 0;
 	}
 }
