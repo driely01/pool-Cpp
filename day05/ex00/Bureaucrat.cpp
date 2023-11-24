@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:39:28 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/23 11:33:25 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:39:09 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Bureaucrat::Bureaucrat( const std::string name, int grade ) : name( name ), grad
 	if ( this->grade < 1 )
 		throw GradeTooHightException();
 	else if ( this->grade > 150 )
-		throw GradeTooHightException();
+		throw GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat( const Bureaucrat &other ) {
