@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:53:52 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/27 14:02:39 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/28 11:02:53 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ bool checkDot( std::string str ) {
 
 static void print( int &nint, float &nfloat, long double &ndouble, char &nchar, std::string str ) {
 
+	// non printibale characters
 	if ( nint < 0 || ( nint >= 0 && nint <= 31 ) || nint == 127 || nint > 254 )
 		std::cout << "char: " << "Non displayable" << std::endl;
 	else 
@@ -96,6 +97,7 @@ static void printNaN( void ) {
 	std::cout << "double: nan" << std::endl;
 }
 
+
 static void printInf( void ) {
 
 	std::cout << "char: impossible" << std::endl;
@@ -122,6 +124,36 @@ static void staticCast( int &nint, float &nfloat, long double &ndouble, char &nc
 	print( nint, nfloat, ndouble, nchar, str );
 }
 
+static bool parceParam( std::string str ) {
+
+	bool flag = false;
+
+	for ( int i = 0; str[i]; i++ ) {
+				
+		if ( !std::isdigit( str[i] ) ) {
+			
+			if ( str[i] == '.' && i ) {
+
+				if ( flag == false )
+					flag = true;
+				else {
+
+					std::cout << "error : invalid number, please enter a valid one!" << std::endl;
+					return false;
+				}
+			}
+			else if ( ( str[i] == '+' || str[i] == '-' ) && !i )
+				i++;
+			else {
+			
+				std::cout << "error : invalid number! please enter a valid one" << std::endl;
+				return false;
+			}
+		} 
+	}
+	return true;
+}
+
 void ScalarConverter::convert( std::string str ) {
 
 	char nchar;
@@ -129,33 +161,24 @@ void ScalarConverter::convert( std::string str ) {
 	float nfloat;
 	long double ndouble;
 
-	if ( str.length() == 1 ) {
+	if ( !str.length() )
+		std::cout << "error : invalid number! please enter a valid one" << std::endl;
+	else if ( str.length() == 1 ) {
 
 		if ( !std::isdigit( str[0] ) )
 			staticCast( nint, nfloat, ndouble, nchar, str, 0 );
 		else
 			staticCast( nint, nfloat, ndouble, nchar, str, 1 );
 	} else {
-
+		
 		if ( str == "nan" || str == "nanf" )
 			printNaN();
 		else if ( str == "-inf" || str == "+inf" || str == "-inff" || str == "+inff" )
 			printInf();
 		else {
 
-			for ( int i = 0; str[i]; i++ ) {
-				
-				if ( !std::isdigit( str[i] ) && str[i] != '.' ) {
-					
-					if ( ( str[i] == '+' || str[i] == '-' ) && !i )
-						i++;
-					else {
-					
-						std::cout << "error: invalid number!" << std::endl;
-						return;
-					}
-				} 
-			}
+			if ( !parceParam( str ) )
+				return ;
 			staticCast( nint, nfloat, ndouble, nchar, str, 1 );
 		}
 	}
