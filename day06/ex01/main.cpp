@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:49:52 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/06 16:38:29 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:12:37 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,18 @@ int main( void ) {
 	data.y = 12;
 	data.z = 87;
 	data.c = 'c';
+	data.a = -1000;
 	data.b = false;
 
 	uintptr_t p = Serializer::serialize( &data );
 	std::cout << p << std::endl;
-	uintptr_t hallo = (uintptr_t)&data;
-	Data *d = Serializer::deserialize( hallo );
+	// uintptr_t hallo = (uintptr_t)&data;
+	Data *d = Serializer::deserialize( p );
 	std::cout << d->x << std::endl;
 	std::cout << d->y << std::endl;
 	std::cout << d->z << std::endl;
 	std::cout << d->c << std::endl;
+	std::cout << d->a << std::endl;
 	std::cout << d->b << std::endl;
 
 	

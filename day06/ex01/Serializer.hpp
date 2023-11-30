@@ -8,6 +8,7 @@ struct Data {
 	long x;
 	long y;
 	long z;
+	long a;
 	char c;
 	bool b;
 };

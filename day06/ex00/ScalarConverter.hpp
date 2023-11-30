@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:51:08 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/27 11:37:50 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:02:09 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class ScalarConverter {
 		ScalarConverter &operator=( const ScalarConverter &rhs );
 
 	public:
-		static void convert( std::string converter );
+		static void convert( const std::string &converter );
 };
 
 #endif

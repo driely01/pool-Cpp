@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:53:52 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/28 11:02:53 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:48:47 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool checkDot( std::string str ) {
 		int i = 0;
 		while ( str[++find] == '0' )
 			i++;
-		if ( i > 3 || static_cast<int>(str[find]) == 0 )
+		if ( i > 4 || static_cast<int>(str[find]) == 0 )
 			return false;
 		else 
 			return true;
@@ -49,40 +49,42 @@ bool checkDot( std::string str ) {
 static void print( int &nint, float &nfloat, long double &ndouble, char &nchar, std::string str ) {
 
 	// non printibale characters
-	if ( nint < 0 || ( nint >= 0 && nint <= 31 ) || nint == 127 || nint > 254 )
+	if (nint < 0 || nint >= 127 || ndouble > std::numeric_limits<int>::max() || ndouble < std::numeric_limits<int>::lowest() )
+		std::cout << "char: " << "Impossible" << std::endl;
+	else if (  nint >= 0 && nint <= 31 )
 		std::cout << "char: " << "Non displayable" << std::endl;
 	else 
 		std::cout << "char: '" << nchar << "'" << std::endl;
 	
 	// int overflow
-	if ( ndouble > std::numeric_limits<int>::max() || ndouble < std::numeric_limits<int>::lowest() )
+	if ( ndouble > std::numeric_limits<int>::max() || ndouble < std::numeric_limits<int>::min() )
 		std::cout << "int: is overflowed! this type of conversion is impossible" << std::endl;
 	else
 		std::cout << "int: " << nint << std::endl;
 
-	if ( checkDot( str ) == false ) {
+	if ( checkDot( str ) == false && ndouble <= 999999 && ndouble >= -999999 ) {
 		
 		// float overflow
-		if ( ndouble > std::numeric_limits<float>::max() || ndouble < std::numeric_limits<float>::lowest() )
-			std::cout << "float: is overflowed! this type of conversion is inpossible" << std::endl;
+		if ( ndouble > std::numeric_limits<float>::max() || ndouble < -std::numeric_limits<float>::max() )
+			std::cout << "float: is overflowed! this type of conversion is impossible" << std::endl;
 		else
 			std::cout << "float: " << nfloat << ".0f" << std::endl;
 		
 		// double overflow
-		if ( ndouble > std::numeric_limits<double>::max() || ndouble < std::numeric_limits<double>::lowest() )
+		if ( ndouble > std::numeric_limits<double>::max() || ndouble < -std::numeric_limits<double>::max() )
 			std::cout << "double: is overflowed! this type of conversion is impossible" << std::endl;
 		else
 			std::cout << "double: " << ndouble << ".0" << std::endl;
 	} else {
 
 		// float overflow
-		if ( ndouble > std::numeric_limits<float>::max() || ndouble < std::numeric_limits<float>::lowest() )
-			std::cout << "float: is overflowed! this type of conversion is inpossible" << std::endl;
+		if ( ndouble > std::numeric_limits<float>::max() || ndouble < -std::numeric_limits<float>::max() )
+			std::cout << "float: is overflowed! this type of conversion is impossible" << std::endl;
 		else
 			std::cout << "float: " << nfloat << "f" << std::endl;
 		
 		// double overflow
-		if ( ndouble > std::numeric_limits<double>::max() || ndouble < std::numeric_limits<double>::lowest() )
+		if ( ndouble > std::numeric_limits<double>::max() || ndouble < -std::numeric_limits<double>::max() )
 			std::cout << "double: is overflowed! this type of conversion is impossible" << std::endl;
 		else
 			std::cout << "double: " << ndouble << std::endl;
@@ -106,7 +108,7 @@ static void printInf( void ) {
 	std::cout << "double: inf" << std::endl;
 }
 
-static void staticCast( int &nint, float &nfloat, long double &ndouble, char &nchar, std::string &str, bool b ) {
+static void staticCast( int &nint, float &nfloat, long double &ndouble, char &nchar, const std::string &str, bool b ) {
 
 	if ( b ) {
 		
@@ -154,7 +156,7 @@ static bool parceParam( std::string str ) {
 	return true;
 }
 
-void ScalarConverter::convert( std::string str ) {
+void ScalarConverter::convert( const std::string &str ) {
 
 	char nchar;
 	int nint;
@@ -162,7 +164,7 @@ void ScalarConverter::convert( std::string str ) {
 	long double ndouble;
 
 	if ( !str.length() )
-		std::cout << "error : invalid number! please enter a valid one" << std::endl;
+		staticCast( nint, nfloat, ndouble, nchar, str, 0 );
 	else if ( str.length() == 1 ) {
 
 		if ( !std::isdigit( str[0] ) )
