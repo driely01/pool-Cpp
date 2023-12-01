@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:53:52 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/30 17:48:47 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:21:05 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,14 @@ static void printInf( void ) {
 	std::cout << "double: inf" << std::endl;
 }
 
+static void printImpossible( void ) {
+
+	std::cout << "char: Impossible" << std::endl;
+	std::cout << "int: Impossible" << std::endl;
+	std::cout << "float: Impossible" << std::endl;
+	std::cout << "double: Impossible" << std::endl;
+}
+
 static void staticCast( int &nint, float &nfloat, long double &ndouble, char &nchar, const std::string &str, bool b ) {
 
 	if ( b ) {
@@ -140,7 +148,8 @@ static bool parceParam( std::string str ) {
 					flag = true;
 				else {
 
-					std::cout << "error : invalid number, please enter a valid one!" << std::endl;
+					// std::cout << "error : invalid number, please enter a valid one!" << std::endl;
+					printImpossible();
 					return false;
 				}
 			}
@@ -148,7 +157,8 @@ static bool parceParam( std::string str ) {
 				i++;
 			else {
 			
-				std::cout << "error : invalid number! please enter a valid one" << std::endl;
+				// std::cout << "error : invalid number! please enter a valid one" << std::endl;
+				printImpossible();
 				return false;
 			}
 		} 
