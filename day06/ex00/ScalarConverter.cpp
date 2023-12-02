@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:53:52 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/01 16:21:05 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/02 10:21:59 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ static bool parceParam( std::string str ) {
 				}
 			}
 			else if ( ( str[i] == '+' || str[i] == '-' ) && !i )
-				i++;
+				continue;
 			else {
 			
 				// std::cout << "error : invalid number! please enter a valid one" << std::endl;
