@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:51:08 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/30 15:02:09 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/03 14:58:20 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #define ScalarConverter_HPP
 
 #include <iostream>
-#include <iostream>
 #include <string>
 #include <sstream>
+#include <fstream>
 #include <limits>
 
 class ScalarConverter {

@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:53:52 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/02 10:21:59 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/03 15:05:05 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,14 @@ static void staticCast( int &nint, float &nfloat, long double &ndouble, char &nc
 
 	if ( b ) {
 		
-		std::istringstream( str ) >> ndouble;
+		size_t find = str.find("f");
+		if ( find == std::string::npos )
+			std::istringstream( str ) >> ndouble;
+		else {
+
+			const_cast<std::string &>( str ).resize( find );
+			std::istringstream( str ) >> ndouble;
+		}
 		nint = static_cast<int>( ndouble );
 		nfloat = static_cast<float>( ndouble );
 		nchar = static_cast<char>( nint );
@@ -148,16 +155,16 @@ static bool parceParam( std::string str ) {
 					flag = true;
 				else {
 
-					// std::cout << "error : invalid number, please enter a valid one!" << std::endl;
 					printImpossible();
 					return false;
 				}
 			}
+			else if ( str[i] == 'f' && i && !str[i + 1] )
+				continue;
 			else if ( ( str[i] == '+' || str[i] == '-' ) && !i )
 				continue;
 			else {
 			
-				// std::cout << "error : invalid number! please enter a valid one" << std::endl;
 				printImpossible();
 				return false;
 			}

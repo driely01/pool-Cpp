@@ -6,17 +6,11 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:49:52 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/30 18:12:37 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/03 15:03:01 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
-#include <stdio.h>
-
-void f( void ) {
-
-	system( "leaks serialize" );
-}
 
 int main( void ) {
 
