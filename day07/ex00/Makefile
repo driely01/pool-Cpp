@@ -1,6 +1,4 @@
-SRC = main.cpp \
-	  Whatever.cpp
-
+SRC = main.cpp
 
 OBJ = ${SRC:.cpp=.o}
 
@@ -10,7 +8,6 @@ RM = rm -f
 
 NAME = template
 HEADER = Whatever.hpp
-
 
 all: ${NAME}
 

@@ -1,6 +1,5 @@
 SRC = main.cpp
 
-
 OBJ = ${SRC:.cpp=.o}
 
 CC = c++
@@ -9,7 +8,6 @@ RM = rm -f
 
 NAME = template
 HEADER = iter.hpp
-
 
 all: ${NAME}
 

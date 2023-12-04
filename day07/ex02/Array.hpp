@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:15:18 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/09 18:55:23 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:43:57 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ class Array {
 			*this = other;
 		}
 		
-		Array &operator=( const Array &rhs ) {
+		Array<T> &operator=( const Array<T> &rhs ) {
 
 			if ( this == &rhs )
 				return *this;

@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:43:39 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/11/07 16:00:17 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:54:30 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 #define Whatever_HPP
 
 #include <iostream>
-
-class Whatever {
-
-	public:
-		Whatever( void );
-		Whatever( const Whatever &other );
-		~Whatever( void );
-		Whatever &operator=( const Whatever &rhs );
-};
 
 template<typename T>
 void swap( T &first, T &second ) {
