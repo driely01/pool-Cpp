@@ -3,10 +3,10 @@ SRC = main.cpp
 OBJ = ${SRC:.cpp=.o}
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 RM = rm -f
 
-NAME = template
+NAME = iter
 HEADER = iter.hpp
 
 all: ${NAME}

@@ -27,7 +27,7 @@ class Array {
 		Array( void ) {
 			
 			this->arraySize = 0;
-			this->array = new T[0];
+			this->array = new T();
 		}
 
 		Array( unsigned int n ) : arraySize( n ) {
@@ -44,7 +44,6 @@ class Array {
 			
 			for ( unsigned int i = 0; i < arraySize; i++ )
 				this->array[i] = other.array[i];
-			*this = other;
 		}
 		
 		Array<T> &operator=( const Array<T> &rhs ) {
@@ -70,9 +69,15 @@ class Array {
 			return this->array[index];
 		}
 		
-		unsigned int size( void ) const { return arraySize; }
+		unsigned int size( void ) const {
+			
+			return arraySize;
+		}
 		
-		~Array( void ) { delete[] this->array; }
+		~Array( void ) {
+
+			delete[] this->array;
+		}
 };
 
 
