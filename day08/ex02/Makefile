@@ -1,5 +1,4 @@
-SRC = main.cpp \
-	  Span.cpp
+SRC = main.cpp
 
 
 OBJ = ${SRC:.cpp=.o}
@@ -8,8 +7,8 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 RM = rm -f
 
-NAME = span
-HEADER = Span.hpp
+NAME = MutantStack
+HEADER = MutantStack.hpp
 
 
 all: ${NAME}

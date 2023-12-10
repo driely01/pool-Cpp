@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:07:28 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/09 18:41:40 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:05:38 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ class MutantStack : public std::stack<T, Container> {
 			if ( this == &rhs )
 				return *this;
 			this->c = rhs.c;
-			// std::stack<T, Container>::operator=(rhs);
 			return *this;
 		};
 
