@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 12:07:02 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/07 18:43:01 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:54:39 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <list>
 
 int main( void ) {
+	
 	try {
 		
 		Span sp = Span( 5 );
@@ -34,7 +35,7 @@ int main( void ) {
 		std::cout << e.what() << std::endl;
 	}
 	std::cout << std::endl;
-	
+	//-----------------------------------------------------------------//
 	
 	try {
 		
@@ -53,6 +54,7 @@ int main( void ) {
 		std::cout << e.what() << std::endl;
 	}
 	std::cout << std::endl;
+	//-----------------------------------------------------------------//
 	
 	try {
 
@@ -61,9 +63,9 @@ int main( void ) {
 		Span sp = Span( 1000 );
 
 		srand( time(NULL) );
-		for ( int i = 0; i < 10000; i++ ) {
+		for ( int i = 0; i < 1000; i++ ) {
 
-			random = rand() % 10000 + 1;
+			random = rand() % 1000 + 1;
 			l.push_back( random );
 		}
 		
@@ -75,6 +77,7 @@ int main( void ) {
 		std::cout << ex.what() << std::endl;
 	}
 	std::cout << std::endl;
+	//-----------------------------------------------------------------//
 
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 12:19:14 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/07 17:57:30 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:38:27 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <set>
 #include <algorithm>
+#include <iterator>
 #include <exception>
 #include <limits>
 
