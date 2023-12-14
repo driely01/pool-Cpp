@@ -9,8 +9,7 @@
 #include <limits>
 #include <map>
 
-
-bool parseInputAndExecute( char *filename );
+bool parseInputAndExecute( char *filename, std::map<std::string, double> &data );
 bool readDataFillMap( std::map<std::string, double> &data, std::string filename );
 
 #endif

@@ -6,20 +6,11 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:49:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/14 12:39:31 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:56:29 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-
-// BitcoinExchange::BitcoinExchange( void ) { }
-
-// BitcoinExchange::BitcoinExchange( const BitcoinExchange &other ) { }
-
-// BitcoinExchange::~BitcoinExchange( void ) { }
-
-// BitcoinExchange &BitcoinExchange::operator=( const BitcoinExchange &rhs ){ }
-
 
 bool readDataFillMap( std::map<std::string, double> &data, std::string filename ) {
 
@@ -27,7 +18,6 @@ bool readDataFillMap( std::map<std::string, double> &data, std::string filename 
 	std::string buffer;
 	std::string date;
 	double exchange;
-	// double
 	size_t find;
 
 	dataFile.open( filename.c_str(), std::ifstream::in );
@@ -43,7 +33,7 @@ bool readDataFillMap( std::map<std::string, double> &data, std::string filename 
 	}
 	if ( buffer.empty() || buffer != "date,exchange_rate" ) {
 
-		std::cout << "Error: invalid data file!" << std::endl;
+		std::cout << "Error: invalid database file!" << std::endl;
 		return false;
 	}
 	while ( !dataFile.eof() ) {
@@ -59,7 +49,6 @@ bool readDataFillMap( std::map<std::string, double> &data, std::string filename 
 			date = buffer.substr( 0, find );
 			std::istringstream( buffer.substr( find + 1, buffer.length() ) ) >> exchange;
 			data[date] = exchange;
-			std::cout << "date " << date << " " << exchange << std::endl;
 		}
 	}
 	dataFile.close();
@@ -164,15 +153,12 @@ static bool checkYearMonthDay( std::string &date ) {
 	}
 	if ( !checkTheDayOfMonth( orDate, yyyy, mm, dd ) )
 		return false;
-
-	// std::cout << "|" << yyyy << "-" << mm << "-" << dd << "|" << std::endl;
 	
 	return true;
 }
 
-static bool parseValue( std::string value ) {
+static bool parseValue( double &bitcoinValue, std::string value ) {
 
-	double bitcoinValue;
 	bool flag = true;
 
 	for ( int i = 0; value[i]; i++ ) {
@@ -242,7 +228,37 @@ static bool getFormAndDelimator( std::string buffer, std::string &date, std::str
 	return true;
 }
 
-bool parseInputAndExecute( char *filename ) {
+static void fixDateFormat( std::string &date ) {
+
+	std::string fixedDate;
+	size_t find;
+	size_t nextFind;
+	
+	if ( date.length() < 10 ) {
+
+		// add year
+		find = date.find( "-" );
+		fixedDate = date.substr( 0, find );
+		fixedDate.append( "-" );
+		
+		// fixe month
+		nextFind = date.find( "-", ++find );
+		if ( nextFind - find < 2 )
+			fixedDate.append( "0" );
+		fixedDate.append( date.substr( find, nextFind - find ) );
+		
+		// fixe day
+		find = nextFind + 1;
+		fixedDate.append( "-" );
+		while ( isdigit( date[++nextFind] ) ) ;
+		if ( nextFind - find < 2 )
+			fixedDate.append( "0" );
+		fixedDate.append( date.substr( find, nextFind - find ) );
+		date = fixedDate;
+	}
+}
+
+bool parseInputAndExecute( char *filename, std::map<std::string, double> &data ) {
 
 	std::string buffer;
 	std::ifstream inputFile;
@@ -275,6 +291,7 @@ bool parseInputAndExecute( char *filename ) {
 			
 			std::string date = buffer;
 			std::string value;
+			double bitcoinValue = 0.0;
 			
 			find = buffer.find( delimator );
 			if ( find != std::string::npos ) {
@@ -283,8 +300,16 @@ bool parseInputAndExecute( char *filename ) {
 				value = buffer.substr(find + delimator.length());
 				if ( parseDate( date ) ) {
 					
-					if ( parseValue( value ) )
-						std::cout << date << " => " << value  << std::endl;
+					fixDateFormat( date );
+					if ( parseValue( bitcoinValue, value ) ) {
+						
+						std::map<std::string, double>::iterator it;
+						
+						it = data.lower_bound(date);
+						if ( it->first != date && it != data.begin() )
+							--it;
+						std::cout << date << delimator << value << " => " << ( bitcoinValue * it->second )  << std::endl;
+					}
 				}
 			} else {
 
