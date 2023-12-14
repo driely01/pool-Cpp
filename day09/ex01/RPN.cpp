@@ -6,11 +6,34 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:44:23 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/14 21:22:14 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/14 21:36:05 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
+
+Tree::Tree( void ) {
+	
+	this->left_child = NULL;
+	this->right_child = NULL;
+	this->oprt = NULL;
+}
+
+Tree::~Tree( void ) { }
+
+Tree::Tree( const Tree &other ){
+
+	*this = other;
+}
+Tree &Tree::operator=( const Tree &rhs ) {
+	
+	if ( this == &rhs )
+		return *this;
+	this->left_child = rhs.left_child;
+	this->right_child = rhs.right_child;
+	this->oprt = rhs.oprt;
+	return *this;
+}
 
 bool fillStackExecute( std::stack<long> polish, std::string arg ) {
 
