@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:15:18 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/04 16:43:57 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:42:52 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ class Array {
 			return *this;
 		}
 		
-		T& operator[]( unsigned int index ) {
+		T& operator[]( unsigned int index ) const {
 
 			if ( index >= this->arraySize ) {
 

@@ -6,21 +6,67 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:49:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/13 22:41:54 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:39:31 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange( void ) { }
+// BitcoinExchange::BitcoinExchange( void ) { }
 
 // BitcoinExchange::BitcoinExchange( const BitcoinExchange &other ) { }
 
-BitcoinExchange::~BitcoinExchange( void ) { }
+// BitcoinExchange::~BitcoinExchange( void ) { }
 
 // BitcoinExchange &BitcoinExchange::operator=( const BitcoinExchange &rhs ){ }
 
-bool checkDateDigitsAndSlash( std::string &date ) {
+
+bool readDataFillMap( std::map<std::string, double> &data, std::string filename ) {
+
+	std::ifstream dataFile;
+	std::string buffer;
+	std::string date;
+	double exchange;
+	// double
+	size_t find;
+
+	dataFile.open( filename.c_str(), std::ifstream::in );
+	if ( !dataFile ) {
+
+		std::cout << "Error: could not open data file." << std::endl;
+		return false;
+	}
+	if ( getline( dataFile, buffer ).eof() ) {
+
+		std::cout << "Error: data is empty!" << std::endl;
+		return false;
+	}
+	if ( buffer.empty() || buffer != "date,exchange_rate" ) {
+
+		std::cout << "Error: invalid data file!" << std::endl;
+		return false;
+	}
+	while ( !dataFile.eof() ) {
+
+		if ( getline( dataFile, buffer ) ) {
+
+			find = buffer.find( "," );
+			if ( find == std::string::npos ) {
+
+				std::cout << "Error: invalid field in database => " << buffer << std::endl;
+				return false;
+			}
+			date = buffer.substr( 0, find );
+			std::istringstream( buffer.substr( find + 1, buffer.length() ) ) >> exchange;
+			data[date] = exchange;
+			std::cout << "date " << date << " " << exchange << std::endl;
+		}
+	}
+	dataFile.close();
+	return true;
+}
+
+static bool checkDateDigitsAndSlash( std::string &date ) {
 	
 	int slash = 0;
 	
@@ -45,8 +91,50 @@ bool checkDateDigitsAndSlash( std::string &date ) {
 	return true;
 }
 
+static bool isLeapYear( int yyyy ) {
 
-bool checkYearMonthDay( std::string &date ) {
+	if ( yyyy % 4 != 0 )
+		return false;
+
+	if ( yyyy % 100 == 0 && yyyy % 400 != 0 )
+		return false;
+
+	return true;
+}
+
+static bool checkTheDayOfMonth( std::string date, int yyyy, int mm, int dd ) {
+
+	if ( mm % 2 ) {
+		
+		if ( ( mm == 9 || mm == 11 ) && dd > 30 ) {
+			
+			std::cout << "Error: bad input => " << date << std::endl;
+			return false;
+		}
+	} else {
+
+		if ( mm == 2 ) {
+
+			if ( isLeapYear( yyyy ) && dd > 29 ) {
+				
+				std::cout << "Error: bad input => " << date << std::endl;
+				return false;
+			} else if ( !isLeapYear( yyyy ) && dd > 28 ) {
+
+				std::cout << "Error: bad input => " << date << std::endl;
+				return false;
+			}
+		}
+		if ( dd > 30 && mm != 8 && mm != 10 && mm != 12 ) {
+
+			std::cout << "Error: bad input => " << date << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
+
+static bool checkYearMonthDay( std::string &date ) {
 
 	std::string find;
 	std::string month;
@@ -74,32 +162,33 @@ bool checkYearMonthDay( std::string &date ) {
 		std::cout << "Error: bad input => " << orDate << std::endl;
 		return false;
 	}
+	if ( !checkTheDayOfMonth( orDate, yyyy, mm, dd ) )
+		return false;
 
 	// std::cout << "|" << yyyy << "-" << mm << "-" << dd << "|" << std::endl;
 	
 	return true;
 }
 
-bool parseValue( std::string value ) {
+static bool parseValue( std::string value ) {
 
 	double bitcoinValue;
 	bool flag = true;
 
 	for ( int i = 0; value[i]; i++ ) {
 
-		if ( !isdigit( value[i] ) ) {
-
-			if ( value[i] == '.' ) {
+		if ( value[i] == '.' ) {
+			
+			if ( flag == true )
+				flag = false;
+			else {
 				
-				if ( flag == true )
-					flag = false;
-				else {
-					
-					std::cout << "Error: invalid number => " << value << std::endl;
-					return false;
-				}
+				std::cout << "Error: invalid number => " << value << std::endl;
+				return false;
 			}
-			else if ( ( value[i] == '-' || value[i] == '+' ) && i == 0 )
+		} else if ( !isdigit( value[i] ) ) {
+
+			if ( ( value[i] == '-' || value[i] == '+' ) && i == 0 )
 				continue;
 			std::cout << "Error: invalid number => " << value << std::endl;
 			return false;
@@ -121,17 +210,15 @@ bool parseValue( std::string value ) {
 	return true;
 }
 
-bool parseDate( std::string date ) {
+static bool parseDate( std::string date ) {
 
 	if ( checkDateDigitsAndSlash( date ) && checkYearMonthDay( date ))
 		return true;
 	return false;
 }
 
-bool getFormAndDelimator( std::string buffer, std::string &date, std::string &value, std::string &delimator ) {
+static bool getFormAndDelimator( std::string buffer, std::string &date, std::string &value, std::string &delimator ) {
 
-	(void)value;
-	(void)delimator;
 	int i = 4;
 	date = buffer.substr( 0, i );
 	if ( date != "date" ) {
@@ -155,7 +242,7 @@ bool getFormAndDelimator( std::string buffer, std::string &date, std::string &va
 	return true;
 }
 
-bool parseInput( char *filename ) {
+bool parseInputAndExecute( char *filename ) {
 
 	std::string buffer;
 	std::ifstream inputFile;
@@ -178,11 +265,17 @@ bool parseInput( char *filename ) {
 	
 	while ( !inputFile.eof() ) {
 
-		if ( getline( inputFile, buffer ) && !buffer.empty()) {
+		if ( getline( inputFile, buffer ) ) {
 
-			// find the delimator
+			if ( buffer.empty() ) {
+
+				std::cout << "Error: bad input => empty line." << std::endl;
+				continue;
+			}
+			
 			std::string date = buffer;
 			std::string value;
+			
 			find = buffer.find( delimator );
 			if ( find != std::string::npos ) {
 				
