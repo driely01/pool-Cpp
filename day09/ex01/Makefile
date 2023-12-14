@@ -1,4 +1,5 @@
-SRC = main.cpp
+SRC = main.cpp \
+	  RPN.cpp
 
 
 OBJ = ${SRC:.cpp=.o}
@@ -7,8 +8,8 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
-NAME = template
-HEADER = easyfind.hpp
+NAME = RPN
+HEADER = RPN.hpp
 
 
 all: ${NAME}
