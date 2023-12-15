@@ -6,49 +6,62 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:44:23 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/14 21:36:05 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/15 11:26:02 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-Tree::Tree( void ) {
-	
-	this->left_child = NULL;
-	this->right_child = NULL;
-	this->oprt = NULL;
-}
+static int doOperation( int right, int left, char oprt ) {
 
-Tree::~Tree( void ) { }
-
-Tree::Tree( const Tree &other ){
-
-	*this = other;
-}
-Tree &Tree::operator=( const Tree &rhs ) {
-	
-	if ( this == &rhs )
-		return *this;
-	this->left_child = rhs.left_child;
-	this->right_child = rhs.right_child;
-	this->oprt = rhs.oprt;
-	return *this;
+	if ( oprt == '+' )
+		return left + right;
+	else if ( oprt == '-' )
+		return left - right;
+	else if ( oprt == '*' )
+		return left * right;
+	else
+		return left / right;
 }
 
 bool fillStackExecute( std::stack<long> polish, std::string arg ) {
 
-	int number;
+	int number = 0;
+	int left = 0;
+	int right = 0;
+	int result = 0;
 
 	for ( size_t i = 0; arg[i]; i++ ) {
 
 		if ( isdigit( arg[i] ) ) {
 
-			std::istringstream( arg[i] ) >> number;
+			number = arg[i] - 48;
 			polish.push( number );
 
 		} else if ( arg[i] == '+' || arg[i] == '-' || arg[i] == '*' || arg[i] == '/' ) {
 
+			if ( polish.size() < 2 ) {
+				
+				std::cout << "Error: invalid operation!" << std::endl;
+				return false;
+			} else {
+
+				right = polish.top();
+				polish.pop();
+				left = polish.top();
+				polish.pop();
+				result = doOperation( right, left, arg[i] );
+				polish.push( result );
+			}
 		}
+	}
+	if ( polish.empty() || polish.size() > 1 ) {
+
+		std::cout << "Error: invalid operation!" << std::endl;
+		return false;
+	} else {
+
+		std::cout << polish.top() << std::endl;
 	}
 	return true;
 }
