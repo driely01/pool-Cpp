@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:46:06 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/15 11:09:55 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/15 11:29:26 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int main( int argc, char **argv ) {
 		
 		if ( parseArguments( argv[1] ) ) {
 
-			// do some business here
 			fillStackExecute( polish, argv[1] );
 		}
 	} else {

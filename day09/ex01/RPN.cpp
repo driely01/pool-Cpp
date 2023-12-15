@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:44:23 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/15 11:26:02 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/15 11:30:02 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ bool fillStackExecute( std::stack<long> polish, std::string arg ) {
 
 		std::cout << "Error: invalid operation!" << std::endl;
 		return false;
+		
 	} else {
 
 		std::cout << polish.top() << std::endl;
@@ -85,7 +86,6 @@ bool parseArguments( std::string arg ) {
 
 			std::cout << "Error: 3 invalid format!" << std::endl;
 			return false;
-
 		}
 	}
 	return true;
