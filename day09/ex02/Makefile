@@ -1,5 +1,5 @@
-SRC = main.cpp
-
+SRC = main.cpp \
+	  PmergeMe.cpp
 
 OBJ = ${SRC:.cpp=.o}
 
@@ -7,9 +7,8 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
-NAME = template
-HEADER = easyfind.hpp
-
+NAME = PmergeMe
+HEADER = PmergeMe.hpp
 
 all: ${NAME}
 

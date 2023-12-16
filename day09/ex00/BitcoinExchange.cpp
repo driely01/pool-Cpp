@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:49:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/14 15:56:29 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/16 10:41:42 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,12 +206,17 @@ static bool parseDate( std::string date ) {
 static bool getFormAndDelimator( std::string buffer, std::string &date, std::string &value, std::string &delimator ) {
 
 	int i = 4;
-	date = buffer.substr( 0, i );
-	if ( date != "date" ) {
+	if ( buffer != "date | vaue" ) {
 		
 		std::cout << "Error: inalid format." << std::endl;
 		return false;
 	}
+	date = buffer.substr( 0, i );
+	// if ( date != "date" ) {
+		
+	// 	std::cout << "Error: inalid format." << std::endl;
+	// 	return false;
+	// }
 	for ( buffer[i]; i++; ) {
 
 		if ( isalpha( buffer[i] ) )
@@ -219,11 +224,11 @@ static bool getFormAndDelimator( std::string buffer, std::string &date, std::str
 	}
 	delimator = buffer.substr( 4, i - 4);
 	value = buffer.substr( i, buffer.length() );
-	if ( value != "value" ) {
+	// if ( value != "value" ) {
 		
-		std::cout << "Error: inalid format." << std::endl;
-		return false;
-	}
+	// 	std::cout << "Error: inalid format." << std::endl;
+	// 	return false;
+	// }
 	std::cout << date << delimator << value << " " << std::endl;
 	return true;
 }
