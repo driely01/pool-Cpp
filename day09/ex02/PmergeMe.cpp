@@ -29,13 +29,17 @@ int jacobsthal( int n ) {
 
 //-----------------------     VECTOR     ---------------------- //
 // ----------------------START FILL VECTOR--------------------- //
-void fillVector( std::vector<int> &container, std::string args ) {
+bool fillVector( std::vector<int> &container, std::string args ) {
 
 	int number;
 
-	std::istringstream( args ) >> number;
-	
+	std::istringstream iss( args );
+		
+	if ( !( iss >> number ) || iss.peek() != EOF )
+		return false;
+
 	container.push_back( number );
+	return true;
 }
 // -----------------------END FILL VECTOR---------------------- //
 
@@ -102,13 +106,16 @@ void mergeSort( std::vector<std::pair<int, int> > &arr ) {
 // ---------------------START PRINT VECTOR--------------------- //
 void printVector( std::vector<int> &vec, bool before ) {
 
+	size_t length = vec.size();
 	std::vector<int>::iterator it = vec.begin();
 	if ( before )
 		std::cout << "Before:\t";
 	else
 		std::cout << "After:\t";
 
-	for ( ; it < vec.begin() + 10; ++it )
+	if ( length > 10 )
+		length = 10;
+	for ( ; it < vec.begin() + length; ++it )
 		std::cout << *it << " ";
 	std::cout << "[...]" << std::endl;
 }
@@ -200,19 +207,23 @@ void executeAlgo( std::vector<int> &container ) {
 	std::clock_t end = std::clock();
 	double getTimeOfExec = static_cast<double>( end - start ) / CLOCKS_PER_SEC;
 	printVector( container, 0 );
-	std::cout << "Time to process a range " << container.size() << " elements with std::[..] : " << ( getTimeOfExec * 1000 ) << " ms" << std::endl;
+	std::cout << "Time to process a range " << container.size() << " elements with std::[...] : " << ( getTimeOfExec * 1000 ) << " ms" << std::endl;
 }
 // -----------------------END ALGORITHM------------------------ //
 //-----------------------     VECTOR     ---------------------- //
 
 //-----------------------      DEQUE     ---------------------- //
-void fillDeque( std::deque<int> &container, std::string args ) {
+bool fillDeque( std::deque<int> &container, std::string args ) {
 
 	int number;
 
-	std::istringstream( args ) >> number;
-	
+	std::istringstream iss( args );
+		
+	if ( !( iss >> number ) || iss.peek() != EOF )
+		return false;
+
 	container.push_back( number );
+	return true;
 }
 
 // ----------------------START MERGE SORT---------------------- //
@@ -361,7 +372,7 @@ void executeAlgoDeque( std::deque<int> &container ) {
 
 	std::clock_t end = std::clock();
 	double getTimeOfExec = static_cast<double>( end - start ) / CLOCKS_PER_SEC;
-	std::cout << "Time to process a range " << container.size() << " elements with std::[..] : " << ( getTimeOfExec * 1000 ) << " ms" << std::endl;
+	std::cout << "Time to process a range " << container.size() << " elements with std::[...] : " << ( getTimeOfExec * 1000 ) << " ms" << std::endl;
 }
 // -----------------------END ALGORITHM------------------------ //
 //-----------------------      DEQUE     ---------------------- //

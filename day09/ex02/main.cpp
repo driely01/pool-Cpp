@@ -23,8 +23,11 @@ int main( int argc, char **argv ) {
 
 			if ( parseArguments( argv[i] ) ) {
 
-				fillVector( containerOne, argv[i] );
-				fillDeque( containerTwo, argv[i] );
+				if ( !fillVector( containerOne, argv[i] ) || ! fillDeque( containerTwo, argv[i] ) ) {
+
+					std::cout << "Error: overflow." << std::endl;
+					return 0;
+				}
 
 			} else {
 

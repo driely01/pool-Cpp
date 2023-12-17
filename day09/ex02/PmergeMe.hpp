@@ -28,13 +28,13 @@ int jacobsthal( int n );
 void executeAlgo( std::vector<int> &container );
 void printVector( std::vector<int> &vec, bool before );
 void mergeSort( std::vector<std::pair<int, int> > &arr );
-void fillVector( std::vector<int> &container, std::string args );
+bool fillVector( std::vector<int> &container, std::string args );
 //-----------------------     VECTOR     ---------------------- //
 
 //-----------------------      DEQUE     ---------------------- //
 void printDeque( std::deque<int> &vec, bool before );
 void executeAlgoDeque( std::deque<int> &container );
 void mergeSortDeque( std::deque<std::pair<int, int> > &arr );
-void fillDeque( std::deque<int> &container, std::string args );
+bool fillDeque( std::deque<int> &container, std::string args );
 //-----------------------      DEQUE     ---------------------- //
 #endif

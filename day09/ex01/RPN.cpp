@@ -50,6 +50,11 @@ bool fillStackExecute( std::stack<long> polish, std::string arg ) {
 				polish.pop();
 				left = polish.top();
 				polish.pop();
+				if ( arg[i] == '/' && right == 0 ) {
+
+					std::cout << "Error: invalid operation, you dividing on 0!" << std::endl;
+					return false;
+				}
 				result = doOperation( right, left, arg[i] );
 				polish.push( result );
 			}

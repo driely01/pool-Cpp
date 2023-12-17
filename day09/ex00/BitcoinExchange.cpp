@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:49:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/16 10:41:42 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/17 16:53:25 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool readDataFillMap( std::map<std::string, double> &data, std::string filename 
 	return true;
 }
 
-static bool checkDateDigitsAndSlash( std::string &date ) {
+static bool checkDateDigitsAndSlash( std::string &date, std::string &buffer ) {
 	
 	int slash = 0;
 	
@@ -63,7 +63,7 @@ static bool checkDateDigitsAndSlash( std::string &date ) {
 
 		if ( !isdigit( date[i] ) && date[i] != '-' ) {
 			
-			std::cout << "Error: bad input =>" << date << std::endl;
+			std::cout << "Error: bad input => " << buffer << std::endl;
 			return false;
 		}
 	}
@@ -91,13 +91,13 @@ static bool isLeapYear( int yyyy ) {
 	return true;
 }
 
-static bool checkTheDayOfMonth( std::string date, int yyyy, int mm, int dd ) {
+static bool checkTheDayOfMonth( std::string &buffer, int yyyy, int mm, int dd ) {
 
 	if ( mm % 2 ) {
 		
 		if ( ( mm == 9 || mm == 11 ) && dd > 30 ) {
 			
-			std::cout << "Error: bad input => " << date << std::endl;
+			std::cout << "Error: bad input => " << buffer << std::endl;
 			return false;
 		}
 	} else {
@@ -106,36 +106,34 @@ static bool checkTheDayOfMonth( std::string date, int yyyy, int mm, int dd ) {
 
 			if ( isLeapYear( yyyy ) && dd > 29 ) {
 				
-				std::cout << "Error: bad input => " << date << std::endl;
+				std::cout << "Error: bad input => " << buffer << std::endl;
 				return false;
 			} else if ( !isLeapYear( yyyy ) && dd > 28 ) {
 
-				std::cout << "Error: bad input => " << date << std::endl;
+				std::cout << "Error: bad input => " << buffer << std::endl;
 				return false;
 			}
 		}
 		if ( dd > 30 && mm != 8 && mm != 10 && mm != 12 ) {
 
-			std::cout << "Error: bad input => " << date << std::endl;
+			std::cout << "Error: bad input => " << buffer << std::endl;
 			return false;
 		}
 	}
 	return true;
 }
 
-static bool checkYearMonthDay( std::string &date ) {
+static bool checkYearMonthDay( std::string &date, std::string &buffer ) {
 
 	std::string find;
 	std::string month;
 	std::string year;
 	std::string day;
-	std::string orDate;
 
 	int yyyy;
 	int mm;
 	int dd;
 
-	orDate = date;
 	year = date.substr( 0, date.find( "-" ) );
 	date = date.substr( date.find( "-" ) + 1, date.length() );
 	month = date.substr( 0, date.find( "-" ) );
@@ -148,16 +146,16 @@ static bool checkYearMonthDay( std::string &date ) {
 	
 	if ( yyyy <= 0 || mm > 12 || mm <= 0 || dd > 31 || dd <= 0 ) {
 		
-		std::cout << "Error: bad input => " << orDate << std::endl;
+		std::cout << "Error: bad input => " << buffer << std::endl;
 		return false;
 	}
-	if ( !checkTheDayOfMonth( orDate, yyyy, mm, dd ) )
+	if ( !checkTheDayOfMonth( buffer, yyyy, mm, dd ) )
 		return false;
 	
 	return true;
 }
 
-static bool parseValue( double &bitcoinValue, std::string value ) {
+static bool parseValue( double &bitcoinValue, std::string value, std::string &buffer ) {
 
 	bool flag = true;
 
@@ -169,14 +167,14 @@ static bool parseValue( double &bitcoinValue, std::string value ) {
 				flag = false;
 			else {
 				
-				std::cout << "Error: invalid number => " << value << std::endl;
+				std::cout << "Error: invalid input => " << buffer << std::endl;
 				return false;
 			}
 		} else if ( !isdigit( value[i] ) ) {
 
 			if ( ( value[i] == '-' || value[i] == '+' ) && i == 0 )
 				continue;
-			std::cout << "Error: invalid number => " << value << std::endl;
+			std::cout << "Error: invalid input => " << buffer << std::endl;
 			return false;
 		}
 	}
@@ -196,9 +194,14 @@ static bool parseValue( double &bitcoinValue, std::string value ) {
 	return true;
 }
 
-static bool parseDate( std::string date ) {
+static bool parseDate( std::string date, std::string buffer ) {
 
-	if ( checkDateDigitsAndSlash( date ) && checkYearMonthDay( date ))
+	if ( date.length() > 10 ) {
+
+		std::cout << "Error: bad input => " << buffer << std::endl;
+		return false;
+	}
+	if ( checkDateDigitsAndSlash( date, buffer ) && checkYearMonthDay( date, buffer ))
 		return true;
 	return false;
 }
@@ -206,17 +209,12 @@ static bool parseDate( std::string date ) {
 static bool getFormAndDelimator( std::string buffer, std::string &date, std::string &value, std::string &delimator ) {
 
 	int i = 4;
-	if ( buffer != "date | vaue" ) {
+	if ( buffer != "date | value" ) {
 		
 		std::cout << "Error: inalid format." << std::endl;
 		return false;
 	}
 	date = buffer.substr( 0, i );
-	// if ( date != "date" ) {
-		
-	// 	std::cout << "Error: inalid format." << std::endl;
-	// 	return false;
-	// }
 	for ( buffer[i]; i++; ) {
 
 		if ( isalpha( buffer[i] ) )
@@ -224,11 +222,6 @@ static bool getFormAndDelimator( std::string buffer, std::string &date, std::str
 	}
 	delimator = buffer.substr( 4, i - 4);
 	value = buffer.substr( i, buffer.length() );
-	// if ( value != "value" ) {
-		
-	// 	std::cout << "Error: inalid format." << std::endl;
-	// 	return false;
-	// }
 	std::cout << date << delimator << value << " " << std::endl;
 	return true;
 }
@@ -303,10 +296,10 @@ bool parseInputAndExecute( char *filename, std::map<std::string, double> &data )
 				
 				date.resize( find );
 				value = buffer.substr(find + delimator.length());
-				if ( parseDate( date ) ) {
+				if ( parseDate( date, buffer ) ) {
 					
 					fixDateFormat( date );
-					if ( parseValue( bitcoinValue, value ) ) {
+					if ( parseValue( bitcoinValue, value, buffer ) ) {
 						
 						std::map<std::string, double>::iterator it;
 						
