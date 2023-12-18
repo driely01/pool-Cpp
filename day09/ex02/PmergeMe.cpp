@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:31:55 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/18 13:47:35 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:43:00 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,7 +346,7 @@ void executeAlgoDeque( std::deque<int> &container ) {
 		container.push_back( itt->first );
 	}
 
-	for ( size_t i = 3; i < newContainer.size(); i++ ) {
+	for ( size_t i = 2; i <= newContainer.size(); i++ ) {
 		
 		prevJacobN = jacobN;
 		if ( jacobN < newContainer.size() )
