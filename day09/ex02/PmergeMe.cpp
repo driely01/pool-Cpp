@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:31:55 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/17 13:26:27 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:10:41 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ void executeAlgo( std::vector<int> &container ) {
 	std::clock_t end = std::clock();
 	double getTimeOfExec = static_cast<double>( end - start ) / CLOCKS_PER_SEC;
 	printVector( container, 0 );
-	std::cout << "Time to process a range " << container.size() << " elements with std::[...] : " << ( getTimeOfExec * 1000 ) << " ms" << std::endl;
+	std::cout << "Time to process a range " << container.size() << " elements with std::vector : " << ( getTimeOfExec * 1000 ) << " ms" << std::endl;
 }
 // -----------------------END ALGORITHM------------------------ //
 //-----------------------     VECTOR     ---------------------- //
@@ -372,7 +372,7 @@ void executeAlgoDeque( std::deque<int> &container ) {
 
 	std::clock_t end = std::clock();
 	double getTimeOfExec = static_cast<double>( end - start ) / CLOCKS_PER_SEC;
-	std::cout << "Time to process a range " << container.size() << " elements with std::[...] : " << ( getTimeOfExec * 1000 ) << " ms" << std::endl;
+	std::cout << "Time to process a range " << container.size() << " elements with std::deque   : " << ( getTimeOfExec * 1000 ) << " ms" << std::endl;
 }
 // -----------------------END ALGORITHM------------------------ //
 //-----------------------      DEQUE     ---------------------- //

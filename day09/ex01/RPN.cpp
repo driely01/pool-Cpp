@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:44:23 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/16 15:58:52 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:10:58 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,18 @@ bool parseArguments( std::string arg ) {
 
 		if ( !isdigit( arg[i] ) && arg[i] != ' ' && arg[i] != '+' && arg[i] != '-' && arg[i] != '*' && arg[i] != '/' ) {
 
-			std::cout << "Error: 1 invalid format!" << std::endl;
+			std::cout << "Error: invalid format!" << std::endl;
 			return false;
 
 		}
 		else if ( ( isdigit( arg[i] ) || arg[i] == '+' || arg[i] == '-' || arg[i] == '*' || arg[i] == '/' ) && arg[i + 1] != ' ' && arg[i + 1] != 0 ) {
 
-			std::cout << "Error: 2 invalid format!" << std::endl;
+			std::cout << "Error: invalid format!" << std::endl;
 			return false;
 
 		} else if ( arg[i] == ' ' && ( !isdigit( arg[i + 1] ) && arg[i + 1] != '+' && arg[i + 1] != '-' && arg[i + 1] != '*' && arg[i + 1] != '/' && arg[i + 1] != 0 )) {
 
-			std::cout << "Error: 3 invalid format!" << std::endl;
+			std::cout << "Error: invalid format!" << std::endl;
 			return false;
 		}
 	}
