@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:31:55 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/18 11:10:41 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:47:35 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,16 +106,16 @@ void mergeSort( std::vector<std::pair<int, int> > &arr ) {
 // ---------------------START PRINT VECTOR--------------------- //
 void printVector( std::vector<int> &vec, bool before ) {
 
-	size_t length = vec.size();
+	// size_t length = vec.size();
 	std::vector<int>::iterator it = vec.begin();
 	if ( before )
 		std::cout << "Before:\t";
 	else
 		std::cout << "After:\t";
 
-	if ( length > 10 )
-		length = 10;
-	for ( ; it < vec.begin() + length; ++it )
+	// if ( length > 10 )
+	// 	length = 10;
+	for ( ; it != vec.end(); ++it )
 		std::cout << *it << " ";
 	std::cout << "[...]" << std::endl;
 }
@@ -179,7 +179,7 @@ void executeAlgo( std::vector<int> &container ) {
 	}
 
 	// now sort the elements using binary search and jacobsthal number method
-	for ( size_t i = 3; i < newContainer.size(); i++ ) {
+	for ( size_t i = 2; i <= newContainer.size(); i++ ) {
 		
 		prevJacobN = jacobN;
 		if ( jacobN < newContainer.size() )
