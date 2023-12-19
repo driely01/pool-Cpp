@@ -6,11 +6,32 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:31:55 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/18 18:15:30 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/19 10:40:56 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+bool parseArguments( std::string args ) {
+
+	for ( int i = 0; args[i]; i++ ) {
+
+		if ( !isdigit( args[i] ) && args[i] != '+') {
+
+			std::cout << "Error: not a valid numbers." << std::endl;
+			return false;
+			
+		}
+		else if ( args[i] == '+' && i ) {
+			
+			std::cout << "Error: not a valid numbers." << std::endl;
+			return false;
+			
+		}
+	}
+	return true;
+}
+
 
 // ------------------START JACOBSTHAL NUMBERS------------------ //
 int jacobsthal( int n ) {
@@ -28,6 +49,7 @@ int jacobsthal( int n ) {
 
 
 //-----------------------     VECTOR     ---------------------- //
+
 // ----------------------START FILL VECTOR--------------------- //
 bool fillVector( std::vector<int> &container, std::string args ) {
 
@@ -138,69 +160,72 @@ void executeAlgo( std::vector<int> &container ) {
 	std::clock_t start = std::clock();
 
 	// if the size is odd add the last one in a tmp and pop it from the end of the container
-	if ( length % 2 ) {
-
-		tmpUnpair = *( container.rbegin() );
-		container.pop_back();
-	}
-	
-	// copy all the content of the first container into a pair container
-	it = container.begin();;
-	for ( ; it != container.end(); it += 2 ) {
-
-		newContainer.push_back( std::make_pair( *it, *( it + 1 ) ) );
-	}
-
-	// swap the pairs it the first one is less than the second one
-	itt = newContainer.begin();
-	for ( ; itt != newContainer.end(); ++itt ) {
-
-		if ( itt->first < itt->second )
-			std::swap( itt->first, itt->second );
-	}
-
-	// here we will sort all first pairs with merge sort
-	mergeSort( newContainer );
-	
-	// clear the original container to reuse it
-	container.clear();
-
-	// push second pair of the begenning of the new container in the original container
-	itt = newContainer.begin();
-	container.push_back( itt->second );
-
-	// push all the first pairs in the newContainer in the original container
-	for ( ; itt != newContainer.end(); ++itt ) {
-
-		container.push_back( itt->first );
-	}
-
-	// now sort the elements using binary search and jacobsthal number method
-	for ( size_t i = 2; i <= newContainer.size(); i++ ) {
+	if ( length > 1 ) {
 		
-		prevJacobN = jacobN;
-		if ( jacobN < newContainer.size() )
-			jacobN = jacobsthal( i );
-		nextJacobN = jacobN;
-		while ( jacobN > prevJacobN ) {
+		if ( length % 2 ) {
 
-			if ( jacobN < newContainer.size() ) {
-				
-				it = std::lower_bound( container.begin(), container.end(), newContainer[jacobN].second );
-				container.insert( it, newContainer[jacobN].second );
-			}
-			jacobN--;
+			tmpUnpair = *( container.rbegin() );
+			container.pop_back();
 		}
-		jacobN = nextJacobN;
+		
+		// copy all the content of the first container into a pair container
+		it = container.begin();;
+		for ( ; it != container.end(); it += 2 ) {
+
+			newContainer.push_back( std::make_pair( *it, *( it + 1 ) ) );
+		}
+
+		// swap the pairs it the first one is less than the second one
+		itt = newContainer.begin();
+		for ( ; itt != newContainer.end(); ++itt ) {
+
+			if ( itt->first < itt->second )
+				std::swap( itt->first, itt->second );
+		}
+
+		// here we will sort all first pairs with merge sort
+		mergeSort( newContainer );
+		
+		// clear the original container to reuse it
+		container.clear();
+
+		// push second pair of the begenning of the new container in the original container
+		itt = newContainer.begin();
+		container.push_back( itt->second );
+
+		// push all the first pairs in the newContainer in the original container
+		for ( ; itt != newContainer.end(); ++itt ) {
+
+			container.push_back( itt->first );
+		}
+
+		// now sort the elements using binary search and jacobsthal number method
+		for ( size_t i = 2; i <= newContainer.size(); i++ ) {
+			
+			prevJacobN = jacobN;
+			if ( jacobN < newContainer.size() )
+				jacobN = jacobsthal( i );
+			nextJacobN = jacobN;
+			while ( jacobN > prevJacobN ) {
+
+				if ( jacobN < newContainer.size() ) {
+					
+					it = std::lower_bound( container.begin(), container.end(), newContainer[jacobN].second );
+					container.insert( it, newContainer[jacobN].second );
+				}
+				jacobN--;
+			}
+			jacobN = nextJacobN;
+		}
+
+		// if the size is odd add the tmp to the original container
+		if ( length % 2 ) {
+
+			it = std::lower_bound( container.begin(), container.end(), tmpUnpair );
+			container.insert( it, tmpUnpair );
+		}
 	}
-
-	// if the size is odd add the tmp to the original container
-	if ( length % 2 ) {
-
-		it = std::lower_bound( container.begin(), container.end(), tmpUnpair );
-		container.insert( it, tmpUnpair );
-	}
-
+	
 	std::clock_t end = std::clock();
 	double getTimeOfExec = static_cast<double>( end - start ) / CLOCKS_PER_SEC;
 	printVector( container, 0 );
@@ -208,6 +233,8 @@ void executeAlgo( std::vector<int> &container ) {
 }
 // -----------------------END ALGORITHM------------------------ //
 //-----------------------     VECTOR     ---------------------- //
+
+
 
 //-----------------------      DEQUE     ---------------------- //
 bool fillDeque( std::deque<int> &container, std::string args ) {
@@ -283,21 +310,6 @@ void mergeSortDeque( std::deque<std::pair<int, int> > &arr ) {
 }
 // -----------------------END MERGE SORT----------------------- //
 
-// ---------------------START PRINT DEQUE---------------------- //
-void printDeque( std::deque<int> &vec, bool before ) {
-
-	std::deque<int>::iterator it = vec.begin();
-	if ( before )
-		std::cout << "Before:\t";
-	else
-		std::cout << "After:\t";
-
-	for ( ; it < vec.begin() + 10; ++it )
-		std::cout << *it << " ";
-	std::cout << "[...]" << std::endl;
-}
-// ----------------------END PRINT DEQUE----------------------- //
-
 // ----------------------START ALGORITHM----------------------- //
 void executeAlgoDeque( std::deque<int> &container ) {
 
@@ -312,59 +324,62 @@ void executeAlgoDeque( std::deque<int> &container ) {
 
 	std::clock_t start = std::clock();
 
-	if ( length % 2 ) {
-
-		tmpUnpair = *( container.rbegin() );
-		container.pop_back();
-	}
-	
-	it = container.begin();;
-	for ( ; it != container.end(); it += 2 ) {
-
-		newContainer.push_back( std::make_pair( *it, *( it + 1 ) ) );
-	}
-
-	itt = newContainer.begin();
-	for ( ; itt != newContainer.end(); ++itt ) {
-
-		if ( itt->first < itt->second )
-			std::swap( itt->first, itt->second );
-	}
-
-	mergeSortDeque( newContainer );
-	
-	container.clear();
-
-	itt = newContainer.begin();
-	container.push_back( itt->second );
-
-	for ( ; itt != newContainer.end(); ++itt ) {
-
-		container.push_back( itt->first );
-	}
-
-	for ( size_t i = 2; i <= newContainer.size(); i++ ) {
+	if ( length > 1 ) {
 		
-		prevJacobN = jacobN;
-		if ( jacobN < newContainer.size() )
-			jacobN = jacobsthal( i );
-		nextJacobN = jacobN;
-		while ( jacobN > prevJacobN ) {
+		if ( length % 2 ) {
 
-			if ( jacobN < newContainer.size() ) {
-				
-				it = std::lower_bound( container.begin(), container.end(), newContainer[jacobN].second );
-				container.insert( it, newContainer[jacobN].second );
-			}
-			jacobN--;
+			tmpUnpair = *( container.rbegin() );
+			container.pop_back();
 		}
-		jacobN = nextJacobN;
-	}
+		
+		it = container.begin();;
+		for ( ; it != container.end(); it += 2 ) {
 
-	if ( length % 2 ) {
+			newContainer.push_back( std::make_pair( *it, *( it + 1 ) ) );
+		}
 
-		it = std::lower_bound( container.begin(), container.end(), tmpUnpair );
-		container.insert( it, tmpUnpair );
+		itt = newContainer.begin();
+		for ( ; itt != newContainer.end(); ++itt ) {
+
+			if ( itt->first < itt->second )
+				std::swap( itt->first, itt->second );
+		}
+
+		mergeSortDeque( newContainer );
+		
+		container.clear();
+
+		itt = newContainer.begin();
+		container.push_back( itt->second );
+
+		for ( ; itt != newContainer.end(); ++itt ) {
+
+			container.push_back( itt->first );
+		}
+
+		for ( size_t i = 2; i <= newContainer.size(); i++ ) {
+			
+			prevJacobN = jacobN;
+			if ( jacobN < newContainer.size() )
+				jacobN = jacobsthal( i );
+			nextJacobN = jacobN;
+			while ( jacobN > prevJacobN ) {
+
+				if ( jacobN < newContainer.size() ) {
+					
+					it = std::lower_bound( container.begin(), container.end(), newContainer[jacobN].second );
+					container.insert( it, newContainer[jacobN].second );
+				}
+				jacobN--;
+			}
+			jacobN = nextJacobN;
+		}
+
+		if ( length % 2 ) {
+
+			it = std::lower_bound( container.begin(), container.end(), tmpUnpair );
+			container.insert( it, tmpUnpair );
+		}
 	}
 
 	std::clock_t end = std::clock();
@@ -373,24 +388,3 @@ void executeAlgoDeque( std::deque<int> &container ) {
 }
 // -----------------------END ALGORITHM------------------------ //
 //-----------------------      DEQUE     ---------------------- //
-
-
-bool parseArguments( std::string args ) {
-
-	for ( int i = 0; args[i]; i++ ) {
-
-		if ( !isdigit( args[i] ) && args[i] != '+') {
-
-			std::cout << "Error: not a valid numbers." << std::endl;
-			return false;
-			
-		}
-		else if ( args[i] == '+' && i ) {
-			
-			std::cout << "Error: not a valid numbers." << std::endl;
-			return false;
-			
-		}
-	}
-	return true;
-}

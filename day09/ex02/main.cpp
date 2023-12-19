@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:31:20 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/12/17 13:28:21 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/12/19 10:39:08 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int main( int argc, char **argv ) {
 
 					std::cout << "Error: overflow." << std::endl;
 					return 0;
+
 				}
 
 			} else {
@@ -44,6 +45,7 @@ int main( int argc, char **argv ) {
 	} else {
 
 		std::cout << "Error: bad arguments." << std::endl;
+
 	}
 	return 0;
 }
